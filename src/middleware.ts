@@ -1,28 +1,72 @@
 // src/middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import * as jose from "jose";
 
-export function middleware(request: NextRequest) {
-  // Extract token from cookies
-  const token = request.cookies.get("auth_token")?.value;
-  const { pathname } = request.nextUrl;
+export async function middleware(request: NextRequest) {
+  const path = request.nextUrl.pathname;
 
-  const isLoginPage = pathname === "/login";
-
-  // If user is not logged in and trying to access protected routes
-  if (!token && !isLoginPage && pathname.startsWith("/dashboard")) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  if (path === "/login" || path.startsWith("/api/auth")) {
+    return NextResponse.next();
   }
 
-  // If user is logged in and tries to access login page, redirect to dashboard
-  if (token && isLoginPage) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+  if (path.startsWith("/dashboard") || path.startsWith("/api")) {
+    const token = request.cookies.get("auth_token")?.value;
+
+    if (!token) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+    try {
+      const secret = new TextEncoder().encode(
+        process.env.JWT_SECRET || "default_secret",
+      );
+      const { payload } = await jose.jwtVerify(token, secret);
+      const role = payload.role as string;
+
+      // 🚀 STRICT ROLE ISOLATION: Checking "Super" AND "Admin"
+      if (
+        path.startsWith("/dashboard/super-admin") &&
+        !(role.includes("Admin") || role.includes("Super"))
+      ) {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
+      }
+      if (path.startsWith("/dashboard/hr") && !role.includes("HR")) {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
+      }
+      if (path.startsWith("/dashboard/store") && !role.includes("Store")) {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
+      }
+      if (path.startsWith("/dashboard/project") && !role.includes("Project")) {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
+      }
+      if (
+        path.startsWith("/dashboard/accounts") &&
+        !role.includes("Accounts")
+      ) {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
+      }
+      if (
+        path.startsWith("/dashboard/purchase") &&
+        !role.includes("Purchase")
+      ) {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
+      }
+      if (path.startsWith("/dashboard/crm") && !role.includes("CRM")) {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
+      }
+
+      return NextResponse.next();
+    } catch (error) {
+      const response = NextResponse.redirect(new URL("/login", request.url));
+      response.cookies.delete("auth_token");
+      return response;
+    }
   }
 
   return NextResponse.next();
 }
 
-// Specify which routes middleware should run on
 export const config = {
-  matcher: ["/dashboard/:path*", "/login"],
+  matcher: ["/dashboard/:path*", "/api/:path*", "/login"],
 };

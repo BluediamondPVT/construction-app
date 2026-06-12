@@ -8,6 +8,8 @@ const rolePermissionsMap: Record<string, string[]> = {
   Store: ["view_inventory", "add_material", "issue_material", "delete_material"],
   Project: ["view_site_progress", "add_daily_report", "request_material"],
   Accounts: ["view_invoices", "create_invoice", "process_payments"],
+  Purchase: ["view_vendors", "create_po", "approve_po", "view_quotations"], // NAYA
+  CRM: ["view_clients", "add_lead", "track_sales", "view_contracts"],       // NAYA
 };
 
 interface StaffUser {
