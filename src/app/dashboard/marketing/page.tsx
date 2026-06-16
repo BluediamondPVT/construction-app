@@ -1,8 +1,8 @@
-// src/app/dashboard/crm/page.tsx
+// src/app/dashboard/marketing/page.tsx
 import { Target, Users, FileText, Megaphone, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-export default function CRMDashboardOverview() {
+export default function MarketingDashboardOverview() {
   const metrics = [
     { name: "Active Leads", value: "28", icon: Users, color: "text-blue-400", change: "5 high priority" },
     { name: "Quotations Sent", value: "14", icon: FileText, color: "text-emerald-400", change: "Awaiting client response" },
@@ -16,7 +16,7 @@ export default function CRMDashboardOverview() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center">
             <Megaphone className="mr-3 h-8 w-8 text-blue-500 drop-shadow-lg" />
-            CRM & Pre-Sales Center
+            Marketing & Pre-Sales Center
           </h1>
           <p className="text-slate-500 dark:text-slate-400 mt-2 font-medium max-w-2xl">
             Track new clients, manage tender submissions, and request BOQs from the technical team seamlessly.
@@ -48,7 +48,7 @@ export default function CRMDashboardOverview() {
         <p className="text-slate-500 dark:text-slate-400 max-w-lg mb-8 font-medium">
           The central hub for generating quotations and submitting tenders is under construction. BOQ requests routed to the Design team will appear here.
         </p>
-        <Link href="/dashboard/crm/leads" className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-xl shadow-md transition-all">
+        <Link href="/dashboard/marketing/leads" className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-xl shadow-md transition-all">
           Manage Leads <ArrowRight className="h-4 w-4 ml-2" />
         </Link>
       </div>

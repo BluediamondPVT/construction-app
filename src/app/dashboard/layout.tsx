@@ -65,8 +65,8 @@ export default function DashboardLayout({
         { name: "System Settings", href: "/dashboard/super-admin/settings", icon: Settings },
       ];
     } 
-    // 2. HR MODULE (Manpower & Admin)
-    else if (currentUser.role.includes("HR")) {
+    // 2. HR MODULE
+    else if (currentUser.role === "HR") {
       navItems = [
         { name: "HR Dashboard", href: "/dashboard/hr", icon: LayoutDashboard },
         { name: "Employees & Labor", href: "/dashboard/hr/employees", icon: Users },
@@ -74,8 +74,8 @@ export default function DashboardLayout({
         { name: "Document Vault", href: "/dashboard/hr/vault", icon: Briefcase },
       ];
     } 
-    // 3. STORE MODULE (Inventory Management)
-    else if (currentUser.role.includes("Store")) {
+    // 3. STORE MODULE
+    else if (currentUser.role === "Store") {
       navItems = [
         { name: "Store Dashboard", href: "/dashboard/store", icon: LayoutDashboard },
         { name: "Live Inventory", href: "/dashboard/store/inventory", icon: Package },
@@ -83,8 +83,8 @@ export default function DashboardLayout({
         { name: "Issue Material", href: "/dashboard/store/issue", icon: ShoppingCart },
       ];
     } 
-    // 4. PROJECT MODULE (Core Operations)
-    else if (currentUser.role.includes("Project")) {
+    // 4. PROJECT MODULE
+    else if (currentUser.role === "Project") {
       navItems = [
         { name: "Site Dashboard", href: "/dashboard/project", icon: LayoutDashboard },
         { name: "Daily Progress (DPR)", href: "/dashboard/project/dpr", icon: HardHat },
@@ -92,8 +92,8 @@ export default function DashboardLayout({
         { name: "Work Certificates", href: "/dashboard/project/certificates", icon: FileText },
       ];
     } 
-    // 5. ACCOUNTS MODULE (Finance & Billing)
-    else if (currentUser.role.includes("Accounts")) {
+    // 5. ACCOUNTS MODULE
+    else if (currentUser.role === "Accounts") {
       navItems = [
         { name: "Finance Dashboard", href: "/dashboard/accounts", icon: LayoutDashboard },
         { name: "Client Billing", href: "/dashboard/accounts/billing", icon: FileText },
@@ -101,16 +101,16 @@ export default function DashboardLayout({
         { name: "Ledger & P/L", href: "/dashboard/accounts/ledger", icon: Wallet },
       ];
     } 
-    // 6. MARKETING / CRM MODULE
-    else if (currentUser.role.includes("Marketing") || currentUser.role.includes("CRM")) {
+    // 6. MARKETING MODULE
+    else if (currentUser.role === "Marketing") {
       navItems = [
-        { name: "CRM Dashboard", href: "/dashboard/crm", icon: LayoutDashboard },
-        { name: "Lead Tracking", href: "/dashboard/crm/leads", icon: Megaphone },
-        { name: "Quotations", href: "/dashboard/crm/quotations", icon: FileText },
+        { name: "Marketing Dashboard", href: "/dashboard/marketing", icon: LayoutDashboard },
+        { name: "Lead Tracking", href: "/dashboard/marketing/leads", icon: Megaphone },
+        { name: "Quotations", href: "/dashboard/marketing/quotations", icon: FileText },
       ];
     } 
-    // 7. DESIGN / DRAWING MODULE
-    else if (currentUser.role.includes("Design") || currentUser.role.includes("Drawing")) {
+    // 7. DESIGN MODULE
+    else if (currentUser.role === "Design") {
       navItems = [
         { name: "Design Dashboard", href: "/dashboard/design", icon: LayoutDashboard },
         { name: "Blueprints Vault", href: "/dashboard/design/blueprints", icon: PenTool },

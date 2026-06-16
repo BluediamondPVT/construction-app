@@ -29,10 +29,10 @@ export default async function DashboardRootRedirect() {
       targetRoute = "/dashboard/project";
     } else if (roleName.includes("Accounts")) {
       targetRoute = "/dashboard/accounts";
-    } else if (roleName.includes("Purchase")) {
-      targetRoute = "/dashboard/purchase";
-    } else if (roleName.includes("CRM")) {
-      targetRoute = "/dashboard/crm"; 
+    } else if (roleName.includes("Marketing")) {
+      targetRoute = "/dashboard/marketing";
+    } else if (roleName.includes("Design")) {
+      targetRoute = "/dashboard/design"; 
     }
   } catch (error) {
     console.error("Token verification failed:", error);

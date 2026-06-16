@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   description: "Modern construction management software",
 };
 
+import { Toaster } from "@/components/ui/toaster";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,6 +32,7 @@ export default function RootLayout({
         style={{ fontFamily: 'var(--font-jakarta)' }} // Apply directly
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );

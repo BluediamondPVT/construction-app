@@ -45,10 +45,10 @@ export async function POST(request: Request) {
       redirectUrl = "/dashboard/project";
     } else if (roleName.includes("Accounts")) {
       redirectUrl = "/dashboard/accounts";
-    } else if (roleName.includes("Purchase")) {
-      redirectUrl = "/dashboard/purchase";
-    } else if (roleName.includes("CRM")) {
-      redirectUrl = "/dashboard/crm"; 
+    } else if (roleName.includes("Marketing")) {
+      redirectUrl = "/dashboard/marketing";
+    } else if (roleName.includes("Design")) {
+      redirectUrl = "/dashboard/design"; 
     }
     
     // JWT Creation

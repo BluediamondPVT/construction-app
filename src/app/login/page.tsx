@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Lock, Mail, Fingerprint } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/toaster";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,12 +31,12 @@ export default function LoginPage() {
       if (response.ok) {
         router.push(data.redirectUrl);
       } else {
-        alert(data.message || "Login failed");
+        toast.error(data.message || "Login failed");
         setIsLoading(false);
       }
     } catch (error) {
       console.error("Login request failed:", error);
-      alert("Network error occurred. Please check your console.");
+      toast.error("Network error occurred. Please check your console.");
       setIsLoading(false);
     }
   };
