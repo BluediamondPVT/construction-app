@@ -11,7 +11,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Construction ERP Dashboard",
+  title: "BDIT Academic",
   description: "Modern construction management software",
 };
 

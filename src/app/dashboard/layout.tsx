@@ -65,15 +65,15 @@ export default function DashboardLayout({
         { name: "System Settings", href: "/dashboard/super-admin/settings", icon: Settings },
       ];
     } 
-    // 2. HR MODULE
+   // 2. HR MODULE
     else if (currentUser.role === "HR") {
       navItems = [
         { name: "HR Dashboard", href: "/dashboard/hr", icon: LayoutDashboard },
-        { name: "Employees & Labor", href: "/dashboard/hr/employees", icon: Users },
-        { name: "Payroll & Attendance", href: "/dashboard/hr/payroll", icon: FileClock },
-        { name: "Document Vault", href: "/dashboard/hr/vault", icon: Briefcase },
+        { name: "Staff Directory", href: "/dashboard/hr/employees", icon: Users },
+        { name: "Live Attendance", href: "/dashboard/hr/attendance", icon: FileClock },
+        { name: "Pending Leaves", href: "/dashboard/hr/leaves", icon: ClipboardList },
       ];
-    } 
+    }
     // 3. STORE MODULE
     else if (currentUser.role === "Store") {
       navItems = [
@@ -167,7 +167,10 @@ export default function DashboardLayout({
         {/* Dynamic Navigation Links */}
         <div className="flex-1 overflow-y-auto p-3 space-y-1.5 custom-scrollbar relative z-10">
           {navItems.map((item) => {
-            const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+            const isBaseRoute = item.href.split('/').length === 3; 
+            const isActive = isBaseRoute 
+              ? pathname === item.href 
+              : pathname === item.href || pathname.startsWith(item.href + '/');
             const Icon = item.icon;
             return (
               <Link key={item.name} href={item.href} title={isCollapsed ? item.name : ""} className={`flex items-center px-3 py-3 rounded-xl transition-all duration-200 group ${isActive ? "bg-blue-600/10 dark:bg-blue-500/20 border border-blue-600/20 dark:border-blue-400/20 shadow-sm" : "border border-transparent hover:bg-slate-100 dark:hover:bg-white/5"} ${isCollapsed ? "justify-center" : ""}`}>

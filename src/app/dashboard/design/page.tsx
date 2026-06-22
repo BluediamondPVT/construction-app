@@ -1,6 +1,7 @@
 // src/app/dashboard/design/page.tsx
 import { PenTool, Layers, FileCheck, Ruler, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import AttendanceCard from "@/components/AttendanceCard"; // 🚀 ATTENDANCE CARD IMPORTED
 
 export default function DesignDashboardOverview() {
   const metrics = [
@@ -12,6 +13,10 @@ export default function DesignDashboardOverview() {
 
   return (
     <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      
+      {/* 🚀 THE PREMIUM ATTENDANCE SYSTEM PLUGGED IN AT THE TOP */}
+      <AttendanceCard />
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center">

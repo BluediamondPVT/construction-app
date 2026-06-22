@@ -1,6 +1,7 @@
 // src/app/dashboard/project/page.tsx
 import { HardHat, ClipboardCheck, ShoppingCart, AlertTriangle, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import AttendanceCard from "@/components/AttendanceCard"; // 🚀 ATTENDANCE CARD IMPORTED
 
 export default function ProjectDashboardOverview() {
   // Dummy data for Project metrics - later fetched from MongoDB
@@ -14,6 +15,9 @@ export default function ProjectDashboardOverview() {
   return (
     <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
       
+      {/* 🚀 THE PREMIUM ATTENDANCE SYSTEM PLUGGED IN AT THE TOP */}
+      <AttendanceCard />
+
       {/* 🚀 Premium Header (PERSONALIZED for Project) */}
       <div className="flex items-center justify-between">
         <div>

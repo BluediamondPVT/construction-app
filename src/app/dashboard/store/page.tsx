@@ -1,9 +1,14 @@
-// Example for: src/app/dashboard/store/page.tsx
+// src/app/dashboard/store/page.tsx
 import { Package } from "lucide-react";
+import AttendanceCard from "@/components/AttendanceCard"; // 🚀 ATTENDANCE CARD IMPORTED
 
 export default function StoreDashboard() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      
+      {/* 🚀 THE PREMIUM ATTENDANCE SYSTEM PLUGGED IN AT THE TOP */}
+      <AttendanceCard />
+
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center">
           <Package className="mr-3 h-8 w-8 text-blue-500" />
