@@ -23,25 +23,34 @@ export async function PUT(request: Request) {
   try {
     await connectToDatabase();
     const body = await request.json();
-    const { recordId, hrNotes, customDate, customTime } = body;
+    const { recordId, date, punchInTime, punchOutTime, status, hrNotes } = body;
 
-    // customDate aur customTime ko combine karke Date object banate hain
-    const combinedDateTime = new Date(`${customDate}T${customTime}`);
+    const updateData: any = {
+      isEditedByHR: true,
+      hrNotes: hrNotes || "Fixed via HR Dashboard"
+    };
+
+    if (date) updateData.date = date;
+    if (status) updateData.status = status;
+
+    if (punchInTime && date) {
+      updateData["punchIn.time"] = new Date(`${date}T${punchInTime}`);
+      updateData["punchIn.location.address"] = "Manually adjusted by HR";
+    }
+
+    if (punchOutTime && date) {
+      updateData["punchOut.time"] = new Date(`${date}T${punchOutTime}`);
+      updateData["punchOut.location.address"] = "Manually adjusted by HR";
+    }
 
     const updatedRecord = await Attendance.findByIdAndUpdate(
       recordId,
-      {
-        "punchOut.time": combinedDateTime, 
-        "punchOut.location.address": "Manually adjusted by HR",
-        status: "Present",
-        isEditedByHR: true,
-        hrNotes: hrNotes || "Fixed via HR Dashboard"
-      },
+      updateData,
       { new: true }
     );
 
     return NextResponse.json({ message: "Attendance corrected successfully", record: updatedRecord });
-  } catch (error) {
-    return NextResponse.json({ message: "Error updating attendance" }, { status: 500 });
+  } catch (error: any) {
+    return NextResponse.json({ message: "Error updating attendance", error: error.message }, { status: 500 });
   }
 }

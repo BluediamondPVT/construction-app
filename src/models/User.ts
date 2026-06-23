@@ -1,5 +1,6 @@
 // src/models/User.ts
 import mongoose, { Schema, Document, models } from "mongoose";
+import "./Role"; // Ensure Role is registered before User
 
 export interface IUser extends Document {
   name: string;

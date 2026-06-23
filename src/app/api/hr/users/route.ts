@@ -34,9 +34,9 @@ export async function GET() {
     const employees = mappedUsers.filter((user) => user.role !== "Super_Admin");
 
     return NextResponse.json({ employees });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Users API Error:", error);
     // Error aane par bhi API crash nahi hogi, khali array bhejegi jisse app chalti rahegi
-    return NextResponse.json({ employees: [] }, { status: 500 }); 
+    return NextResponse.json({ employees: [], error: error.message }, { status: 500 }); 
   }
 }

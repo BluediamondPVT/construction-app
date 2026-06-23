@@ -7,10 +7,14 @@ export default function LiveAttendancePage() {
   const [attendances, setAttendances] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedMap, setSelectedMap] = useState<{ lat: number; lng: number; name: string } | null>(null);
-  const [fixingRecord, setFixingRecord] = useState<any | null>(null);
-  const [hrNote, setHrNote] = useState("");
-  const [customDate, setCustomDate] = useState("");
-const [customTime, setCustomTime] = useState("");
+  const [editingRecord, setEditingRecord] = useState<any | null>(null);
+  const [editForm, setEditForm] = useState({
+    date: "",
+    punchInTime: "",
+    punchOutTime: "",
+    status: "",
+    hrNotes: ""
+  });
 
   const fetchAttendance = async () => {
     setIsLoading(true);
@@ -27,32 +31,38 @@ const [customTime, setCustomTime] = useState("");
 
   useEffect(() => { fetchAttendance(); }, []);
 
-  const handleFixPunch = async () => {
-    if (!fixingRecord) return;
-    if (!customDate || !customTime) {
-      alert("Please select both Date and Out Time.");
-      return;
-    }
+  const openEditModal = (att: any) => {
+    setEditingRecord(att);
+    const inTimeStr = att.punchIn?.time ? new Date(att.punchIn.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }) : "";
+    const outTimeStr = att.punchOut?.time ? new Date(att.punchOut.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }) : "";
+    setEditForm({
+      date: att.date || "",
+      punchInTime: inTimeStr,
+      punchOutTime: outTimeStr,
+      status: att.status || "Absent",
+      hrNotes: att.hrNotes || ""
+    });
+  };
+
+  const handleSaveEdit = async () => {
+    if (!editingRecord) return;
     try {
       const res = await fetch("/api/hr/attendance", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          recordId: fixingRecord._id, 
-          hrNotes: hrNote,
-          customDate,
-          customTime
+        body: JSON.stringify({
+          recordId: editingRecord._id,
+          ...editForm
         }),
       });
       if (res.ok) {
-        setFixingRecord(null);
-        setHrNote("");
-        setCustomDate("");
-        setCustomTime("");
+        setEditingRecord(null);
         fetchAttendance();
+      } else {
+        alert("Error saving record.");
       }
     } catch (err) {
-      alert("Error repairing log.");
+      alert("Error saving record.");
     }
   };
 
@@ -106,9 +116,9 @@ const [customTime, setCustomTime] = useState("");
                     ) : <span className="text-xs text-rose-500 font-bold flex items-center"><AlertTriangle className="h-3 w-3 mr-1" /> Missing</span>}
                   </td>
                   <td className="px-6 py-4 text-right">
-                    {!att.punchOut?.time && (
-                      <button onClick={() => setFixingRecord(att)} className="px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold rounded-lg">Fix Punch Out</button>
-                    )}
+                    <button onClick={() => openEditModal(att)} className="px-3 py-1 bg-blue-600 dark:bg-blue-500 text-white text-xs font-bold rounded-lg flex items-center justify-center ml-auto">
+                      <Edit2 className="h-3 w-3 mr-1" /> Edit
+                    </button>
                   </td>
                 </tr>
               ))
@@ -122,7 +132,7 @@ const [customTime, setCustomTime] = useState("");
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
           <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-xl overflow-hidden shadow-2xl">
             <div className="p-4 border-b dark:border-slate-800 flex justify-between items-center">
-              <h3 className="font-bold flex items-center"><Map className="mr-2 h-4 w-4"/> Map View: {selectedMap.name}</h3>
+              <h3 className="font-bold flex items-center"><Map className="mr-2 h-4 w-4" /> Map View: {selectedMap.name}</h3>
               <button onClick={() => setSelectedMap(null)} className="text-sm font-bold text-slate-400 hover:text-red-500">Close</button>
             </div>
             <div className="w-full h-80">
@@ -132,38 +142,65 @@ const [customTime, setCustomTime] = useState("");
         </div>
       )}
 
-      {/* CORRECTION MODAL */}
-    // Inside the Modal in src/app/dashboard/hr/attendance/page.tsx
+      {/* EDIT MODAL */}
+      {editingRecord && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-md p-6 shadow-2xl border dark:border-slate-800">
+            <h3 className="text-lg font-bold mb-4 text-blue-500 flex items-center"><Edit2 className="mr-2 h-5 w-5" /> Edit Attendance</h3>
 
-{fixingRecord && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-    <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-md p-6 shadow-2xl border dark:border-slate-800">
-      <h3 className="text-lg font-bold mb-4 text-orange-500">Adjust Shift Balance</h3>
-      
-      {/* 🚀 NEW: DATE & TIME INPUTS */}
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-400 mb-1">Select Date</label>
-          <input type="date" className="w-full px-3 py-2 border rounded-xl bg-slate-50 dark:bg-slate-800 text-sm" 
-            onChange={(e) => setCustomDate(e.target.value)} />
-        </div>
-        <div>
-          <label className="block text-[10px] font-bold uppercase text-slate-400 mb-1">Set Out Time</label>
-          <input type="time" className="w-full px-3 py-2 border rounded-xl bg-slate-50 dark:bg-slate-800 text-sm" 
-            onChange={(e) => setCustomTime(e.target.value)} />
-        </div>
-      </div>
+            <div className="space-y-4 mb-4">
+              <div>
+                <label className="block text-[10px] font-bold uppercase text-slate-400 mb-1">Date</label>
+                <input type="date" className="w-full px-3 py-2 border rounded-xl bg-slate-50 dark:bg-slate-800 text-sm outline-none"
+                  value={editForm.date}
+                  onChange={(e) => setEditForm({ ...editForm, date: e.target.value })} />
+              </div>
 
-      <input type="text" placeholder="Reason for adjustment" value={hrNote} onChange={(e) => setHrNote(e.target.value)} className="w-full px-4 py-2 border rounded-xl bg-slate-50 dark:bg-slate-800 outline-none text-sm mb-4" />
-      
-      <div className="flex gap-2">
-        <button onClick={() => setFixingRecord(null)} className="flex-1 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-bold">Cancel</button>
-        {/* 🚀 updated handleFixPunch call to pass state variables */}
-        <button onClick={() => handleFixPunch()} className="flex-1 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl text-sm font-bold">Confirm Adjust</button>
-      </div>
-    </div>
-  </div>
-)}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[10px] font-bold uppercase text-slate-400 mb-1">Punch In Time</label>
+                  <input type="time" className="w-full px-3 py-2 border rounded-xl bg-slate-50 dark:bg-slate-800 text-sm outline-none"
+                    value={editForm.punchInTime}
+                    onChange={(e) => setEditForm({ ...editForm, punchInTime: e.target.value })} />
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold uppercase text-slate-400 mb-1">Punch Out Time</label>
+                  <input type="time" className="w-full px-3 py-2 border rounded-xl bg-slate-50 dark:bg-slate-800 text-sm outline-none"
+                    value={editForm.punchOutTime}
+                    onChange={(e) => setEditForm({ ...editForm, punchOutTime: e.target.value })} />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold uppercase text-slate-400 mb-1">Status</label>
+                <select
+                  className="w-full px-3 py-2 border rounded-xl bg-slate-50 dark:bg-slate-800 text-sm outline-none"
+                  value={editForm.status}
+                  onChange={(e) => setEditForm({ ...editForm, status: e.target.value })}
+                >
+                  <option value="Present">Present</option>
+                  <option value="Absent">Absent</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Missed Out">Missed Out</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold uppercase text-slate-400 mb-1">HR Notes</label>
+                <input type="text" placeholder="Reason for adjustment"
+                  value={editForm.hrNotes}
+                  onChange={(e) => setEditForm({ ...editForm, hrNotes: e.target.value })}
+                  className="w-full px-4 py-2 border rounded-xl bg-slate-50 dark:bg-slate-800 outline-none text-sm" />
+              </div>
+            </div>
+
+            <div className="flex gap-2 mt-6">
+              <button onClick={() => setEditingRecord(null)} className="flex-1 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Cancel</button>
+              <button onClick={() => handleSaveEdit()} className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold transition-colors">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
