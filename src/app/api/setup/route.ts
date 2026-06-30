@@ -16,7 +16,7 @@ export async function GET() {
       superAdminRole = await Role.create({
         name: "Super_Admin",
         permissions: ["all_access"], 
-      });
+      }); 
       console.log("Super_Admin role created successfully");
     }
 
