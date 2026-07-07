@@ -47,6 +47,9 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
 
   const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  const startDayOfWeek = new Date(currentYear, currentMonth - 1, 1).getDay();
+  const emptyDays = Array.from({ length: startDayOfWeek }, (_, i) => i);
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   // Month Change Handlers
   const handlePrevMonth = () => {
@@ -157,43 +160,57 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
         <div className="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col">
           
           {/* Header */}
-          <div className="sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-10 flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800">
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center">
-              <CalendarIcon className="mr-3 h-6 w-6 sm:h-7 sm:w-7 text-blue-500" />
+          <div className="sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-10 flex items-center justify-between p-4 sm:p-6 border-b border-slate-100 dark:border-slate-800">
+            <h2 className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center">
+              <CalendarIcon className="mr-2 sm:mr-3 h-5 w-5 sm:h-7 sm:w-7 text-blue-500" />
               History & Leaves
             </h2>
-            <button onClick={onClose} className="p-2 bg-slate-100 dark:bg-slate-800 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30 rounded-full transition-colors">
-              <X className="h-6 w-6" />
+            <button onClick={onClose} className="p-1.5 sm:p-2 bg-slate-100 dark:bg-slate-800 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30 rounded-full transition-colors">
+              <X className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
           </div>
 
           {/* Body */}
-          <div className="p-6">
+          <div className="p-3 sm:p-6">
             
             {/* 🚀 Month Navigation Header */}
-            <div className="flex items-center justify-between mb-6 bg-slate-50 dark:bg-slate-800/50 p-2 rounded-2xl border dark:border-slate-800">
-              <button onClick={handlePrevMonth} className="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-xl transition-all shadow-sm">
-                <ChevronLeft className="h-5 w-5 text-slate-600 dark:text-slate-300" />
+            <div className="flex items-center justify-between mb-4 sm:mb-6 bg-slate-50 dark:bg-slate-800/50 p-1.5 sm:p-2 rounded-2xl border dark:border-slate-800">
+              <button onClick={handlePrevMonth} className="p-1.5 sm:p-2 hover:bg-white dark:hover:bg-slate-700 rounded-xl transition-all shadow-sm">
+                <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600 dark:text-slate-300" />
               </button>
-              <h3 className="font-bold text-lg text-slate-800 dark:text-white uppercase tracking-wider">
+              <h3 className="font-bold text-sm sm:text-lg text-slate-800 dark:text-white uppercase tracking-wider">
                 {monthName} {currentYear}
               </h3>
-              <button onClick={handleNextMonth} className="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-xl transition-all shadow-sm">
-                <ChevronRight className="h-5 w-5 text-slate-600 dark:text-slate-300" />
+              <button onClick={handleNextMonth} className="p-1.5 sm:p-2 hover:bg-white dark:hover:bg-slate-700 rounded-xl transition-all shadow-sm">
+                <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600 dark:text-slate-300" />
               </button>
             </div>
 
             {/* Legend */}
-            <div className="mb-6 flex gap-4 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 justify-center sm:justify-start">
-              <span className="flex items-center"><div className="w-3 h-3 rounded-full bg-emerald-500 mr-2"></div> Present</span>
-              <span className="flex items-center"><div className="w-3 h-3 rounded-full bg-rose-500 mr-2"></div> Missed Out</span>
-              <span className="flex items-center"><div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div> Leave</span>
+            <div className="mb-4 sm:mb-6 flex flex-wrap gap-2.5 sm:gap-4 text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-400 justify-center sm:justify-start">
+              <span className="flex items-center"><div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-500 mr-1.5"></div> Present</span>
+              <span className="flex items-center"><div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-rose-500 mr-1.5"></div> Missed Out</span>
+              <span className="flex items-center"><div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-blue-500 mr-1.5"></div> Approved Leave</span>
+              <span className="flex items-center"><div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500 mr-1.5"></div> Pending Leave</span>
+            </div>
+
+            {/* Weekday Headers */}
+            <div className="grid grid-cols-7 gap-1 sm:gap-4 mb-2 text-center text-[10px] sm:text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+              {weekdays.map((wd) => (
+                <div key={wd}>{wd}</div>
+              ))}
             </div>
 
             {isLoading ? (
               <div className="h-64 flex items-center justify-center animate-pulse text-slate-400">Loading Calendar...</div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4">
+              <div className="grid grid-cols-7 gap-1 sm:gap-4">
+                {/* Empty offset days */}
+                {emptyDays.map((_, idx) => (
+                  <div key={`empty-${idx}`} className="bg-transparent border border-transparent rounded-xl min-h-[44px] sm:min-h-[80px]"></div>
+                ))}
+
+                {/* Actual month days */}
                 {daysArray.map((day) => {
                   const formattedDate = `${currentYear}-${String(currentMonth).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                   const status = getDayStatus(day);
@@ -205,16 +222,16 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
 
                   if (status.type === "present") {
                     bgClass = "bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/30 shadow-sm";
-                    icon = <CheckCircle className="h-4 w-4 text-emerald-500 mt-2" />;
+                    icon = <CheckCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-500 mt-1 sm:mt-2" />;
                   } else if (status.type === "missed") {
                     bgClass = "bg-rose-50 dark:bg-rose-500/10 border-rose-200 dark:border-rose-500/30 shadow-sm";
-                    icon = <AlertCircle className="h-4 w-4 text-rose-500 mt-2" />;
+                    icon = <AlertCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-rose-500 mt-1 sm:mt-2" />;
                   } else if (status.type === "leave") {
                     const isApproved = status.data.status === "Approved";
                     bgClass = isApproved 
                       ? "bg-blue-50 dark:bg-blue-500/10 border-blue-200 dark:border-blue-500/30"
                       : "bg-yellow-50 dark:bg-yellow-500/10 border-yellow-200 dark:border-yellow-500/30";
-                    icon = <div className="mt-2 text-xs font-bold text-blue-600 dark:text-blue-400">{status.data.type}</div>;
+                    icon = <div className="mt-1 sm:mt-2 text-[8px] sm:text-xs font-bold text-blue-600 dark:text-blue-400">{status.data.type}</div>;
                   } else if (status.type === "empty" && isPastDate) {
                     cursorClass = "cursor-not-allowed opacity-40";
                   }
@@ -223,20 +240,20 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
                     <div 
                       key={day} 
                       onClick={() => handleDayClick(day)}
-                      className={`relative p-4 rounded-2xl border transition-all ${bgClass} ${cursorClass} min-h-[80px] flex flex-col items-center sm:items-start`}
+                      className={`relative p-1.5 sm:p-4 rounded-xl sm:rounded-2xl border transition-all ${bgClass} ${cursorClass} min-h-[44px] sm:min-h-[80px] flex flex-col items-center sm:items-start`}
                     >
-                      <span className="text-lg font-bold text-slate-700 dark:text-slate-200">{day}</span>
+                      <span className="text-xs sm:text-lg font-bold text-slate-700 dark:text-slate-200">{day}</span>
                       {icon}
                       
                       {/* Hover Actions */}
                       {status.type === "empty" && !isPastDate && (
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-blue-500/90 rounded-2xl">
-                          <span className="text-[10px] sm:text-xs font-bold text-white">Apply Leave</span>
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-blue-500/90 rounded-xl sm:rounded-2xl">
+                          <span className="text-[8px] sm:text-xs font-bold text-white">Apply</span>
                         </div>
                       )}
                       {(status.type === "present" || status.type === "missed") && (
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800/90 rounded-2xl">
-                          <span className="text-[10px] sm:text-xs font-bold text-white flex items-center"><Clock className="w-3 h-3 mr-1"/> View Log</span>
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800/90 rounded-xl sm:rounded-2xl">
+                          <span className="text-[8px] sm:text-xs font-bold text-white flex items-center"><Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1"/> Log</span>
                         </div>
                       )}
                     </div>
