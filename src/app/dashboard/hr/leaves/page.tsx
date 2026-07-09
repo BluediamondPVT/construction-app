@@ -29,18 +29,30 @@ export default function PendingLeavesPage() {
     const pending = leaves.filter(l => l.status === "Pending");
     const history = leaves.filter(l => l.status !== "Pending");
 
+    // 🚀 NEW: Smart Color Function for Leaves
+    const getLeaveColor = (status: string) => {
+        if (status === "Approved") return "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400";
+        if (status === "Rejected") return "bg-rose-100 dark:bg-rose-500/20 text-rose-700 dark:text-rose-400";
+        return "bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400"; // For Pending
+    };
+
     return (
         <div className="space-y-10">
-            {/* PENDING SECTION (Already Mobile Friendly - Using Cards) */}
+            {/* PENDING SECTION */}
             <div>
                 <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
                     <ClipboardList className="mr-2 h-6 w-6 text-yellow-500" /> Pending Authorizations
                 </h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {pending.length === 0 ? <p className="text-slate-500 dark:text-slate-400">No pending requests.</p> : pending.map(leave => (
-                        <div key={leave._id} className="bg-white dark:bg-slate-800/50 backdrop-blur-sm p-5 rounded-2xl border dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                        <div key={leave._id} className="bg-white dark:bg-slate-800/50 backdrop-blur-sm p-5 rounded-2xl border border-yellow-200 dark:border-yellow-700/50 shadow-sm flex flex-col justify-between">
                             <div>
-                                <h3 className="font-bold text-slate-900 dark:text-white text-lg">{leave.userId?.name}</h3>
+                                <div className="flex justify-between items-start">
+                                    <h3 className="font-bold text-slate-900 dark:text-white text-lg">{leave.userId?.name}</h3>
+                                    <span className={`px-2 py-0.5 rounded-md text-[10px] uppercase font-bold ${getLeaveColor(leave.status)}`}>
+                                        {leave.status}
+                                    </span>
+                                </div>
                                 <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-4 mt-1 bg-slate-100 dark:bg-slate-700/50 inline-block px-2 py-1 rounded">
                                     {leave.type} Leave • {new Date(leave.date).toLocaleDateString()}
                                 </p>
@@ -54,7 +66,7 @@ export default function PendingLeavesPage() {
                 </div>
             </div>
 
-            {/* HISTORY SECTION (Updated with Responsive Card View) */}
+            {/* HISTORY SECTION */}
             <div>
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
                     <History className="mr-2 h-5 w-5 text-blue-500" /> Leave History
@@ -79,7 +91,8 @@ export default function PendingLeavesPage() {
                                         <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{new Date(leave.date).toLocaleDateString()}</td>
                                         <td className="px-6 py-4 text-slate-600 dark:text-slate-300 font-medium">{leave.type}</td>
                                         <td className="px-6 py-4">
-                                            <span className={`px-2.5 py-1 rounded-lg text-[10px] uppercase font-bold ${leave.status === "Approved" ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400" : "bg-rose-100 dark:bg-rose-500/20 text-rose-700 dark:text-rose-400"}`}>
+                                            {/* 🚀 Dynamic Color Applied Here */}
+                                            <span className={`px-2.5 py-1 rounded-lg text-[10px] uppercase font-bold ${getLeaveColor(leave.status)}`}>
                                                 {leave.status}
                                             </span>
                                         </td>
@@ -107,7 +120,8 @@ export default function PendingLeavesPage() {
                                             </span>
                                         </div>
                                     </div>
-                                    <span className={`px-2.5 py-1 rounded-lg text-[10px] uppercase font-bold flex-shrink-0 ${leave.status === "Approved" ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400" : "bg-rose-100 dark:bg-rose-500/20 text-rose-700 dark:text-rose-400"}`}>
+                                    {/* 🚀 Dynamic Color Applied Here */}
+                                    <span className={`px-2.5 py-1 rounded-lg text-[10px] uppercase font-bold flex-shrink-0 ${getLeaveColor(leave.status)}`}>
                                         {leave.status}
                                     </span>
                                 </div>

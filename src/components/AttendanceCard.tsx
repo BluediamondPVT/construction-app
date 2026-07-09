@@ -1,4 +1,3 @@
-// src/components/AttendanceCard.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,7 +6,7 @@ import CalendarModal from "./attendance/CalendarModal";
 
 export default function AttendanceCard() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isPunching, setIsPunching] = useState(false);
+  const [isPunching, setIsPunching] = useState(false); 
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   
   // States from Backend
@@ -20,7 +19,6 @@ export default function AttendanceCard() {
   const [locationError, setLocationError] = useState("");
 
   useEffect(() => {
-    // Fetch today's attendance status when dashboard loads
     fetch("/api/attendance/today")
       .then((res) => res.json())
       .then((data) => {
@@ -36,6 +34,29 @@ export default function AttendanceCard() {
       });
   }, []);
 
+  // 🚀 NEW: Helper function to get text address from coordinates
+  const getAddressFromCoords = async (lat: number, lng: number) => {
+    try {
+      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`);
+      
+      if (!response.ok) return "Map coordinates logged";
+      
+      const data = await response.json();
+      
+      // Smart location formatting (e.g. "Virani Petrol Pump, Mumbra")
+      const specificArea = data.address?.amenity || data.address?.road || data.address?.neighbourhood || data.address?.suburb || "";
+      const city = data.address?.city || data.address?.town || data.address?.village || "";
+      
+      if (specificArea && city) return `${specificArea}, ${city}`;
+      if (data.display_name) return data.display_name.split(",").slice(0, 3).join(", "); // Fallback short name
+      
+      return "Map coordinates logged";
+    } catch (error) {
+      console.error("Geocoding Error:", error);
+      return "Map coordinates logged"; // Fallback so attendance doesn't fail
+    }
+  };
+
   const handlePunch = async (action: "IN" | "OUT") => {
     setIsPunching(true);
     setLocationError("");
@@ -49,14 +70,20 @@ export default function AttendanceCard() {
 
     navigator.geolocation.getCurrentPosition(
       async (position) => {
-        const location = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          address: "Fetching..." // Reverse geocoding can be added later
-        };
-
-        // 2. Send Data to Backend API
         try {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          
+          // 🚀 NEW: Fetch the real text address before sending to backend
+          const addressText = await getAddressFromCoords(latitude, longitude);
+
+          const location = {
+            latitude,
+            longitude,
+            address: addressText // Backend me ab ye text save hoga!
+          };
+
+          // 2. Send Data to Backend API
           const res = await fetch("/api/attendance/punch", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -77,7 +104,6 @@ export default function AttendanceCard() {
         }
       },
       (error) => {
-        // STRICT SECURITY: User denied location
         setLocationError("Strict Policy: Geolocation access is mandatory to mark attendance. Please allow location access in your browser/phone settings.");
         setIsPunching(false);
       },
@@ -94,7 +120,6 @@ export default function AttendanceCard() {
     );
   }
 
-  // UI STATE 1: User is on Leave
   if (isOnLeave) {
     return (
       <div className="bg-yellow-50 dark:bg-yellow-500/10 backdrop-blur-xl rounded-2xl p-6 border border-yellow-200 dark:border-yellow-500/20 shadow-sm text-center">
@@ -105,15 +130,12 @@ export default function AttendanceCard() {
     );
   }
 
- return (
-    <> {/* 🚀 ADDED REACT FRAGMENT HERE */}
+  return (
+    <>
       <div className="bg-white/60 dark:bg-slate-900/40 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-slate-200/50 dark:border-white/10 shadow-lg relative overflow-hidden transition-all">
-        {/* Background glowing orb */}
         <div className={`absolute -top-10 -right-10 w-32 h-32 blur-3xl rounded-full opacity-20 pointer-events-none transition-colors duration-1000 ${hasPunchedOut ? 'bg-slate-500' : hasPunchedIn ? 'bg-rose-500' : 'bg-emerald-500'}`}></div>
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-          
-          {/* Left Side: Info */}
           <div className="text-center md:text-left">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center justify-center md:justify-start">
               <Clock className="mr-2 h-6 w-6 text-blue-500" />
@@ -124,17 +146,13 @@ export default function AttendanceCard() {
             </p>
           </div>
 
-          {/* Right Side: Action Buttons */}
           <div className="flex flex-col items-center gap-3 w-full md:w-auto">
-            
-            {/* STATE 2: Done for the day */}
             {hasPunchedIn && hasPunchedOut ? (
               <div className="flex items-center px-6 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold rounded-2xl border border-slate-200 dark:border-slate-700">
                 <CheckCircle className="mr-2 h-5 w-5 text-emerald-500" />
                 Shift Completed
               </div>
             ) : (
-              /* STATE 3 & 4: IN / OUT Buttons */
               <button
                 onClick={() => handlePunch(hasPunchedIn ? "OUT" : "IN")}
                 disabled={isPunching}
@@ -158,7 +176,6 @@ export default function AttendanceCard() {
               </button>
             )}
 
-            {/* Leave Request Button */}
             <button 
               onClick={() => setIsCalendarOpen(true)}
               className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mt-2 flex items-center transition-colors"
@@ -168,7 +185,6 @@ export default function AttendanceCard() {
           </div>
         </div>
 
-        {/* Strict Security Location Error Banner */}
         {locationError && (
           <div className="mt-6 p-4 bg-red-50 dark:bg-red-500/10 backdrop-blur-md rounded-xl border border-red-200 dark:border-red-500/20 text-red-700 dark:text-red-400 text-sm font-semibold flex items-start animate-in fade-in slide-in-from-top-2">
             <AlertTriangle className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5" />
@@ -177,7 +193,6 @@ export default function AttendanceCard() {
         )}
       </div>
 
-      {/* 🚀 MODAL KO DIV KE BAHAR RAKHA HAI TAAKI FULL SCREEN AAYE */}
       <CalendarModal 
         isOpen={isCalendarOpen} 
         onClose={() => setIsCalendarOpen(false)} 

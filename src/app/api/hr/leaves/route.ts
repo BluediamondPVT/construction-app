@@ -7,33 +7,83 @@ import User from "@/models/User";
 export async function GET(request: Request) {
   try {
     await connectToDatabase();
-    
-    // Sabhi leaves lao, status ke hisaab se frontend filter kar lega
-    const allLeaves = await Leave.find()
-      .populate("userId", "name role")
-      .sort({ date: -1 }); // Nayi requests upar
 
-    return NextResponse.json({ leaves: allLeaves });
-  } catch (error) {
-    return NextResponse.json({ message: "Error fetching leaves" }, { status: 500 });
+    const allLeaves = await Leave.find()
+      .populate({
+        path: "userId",
+        select: "name role",
+        populate: { path: "role", select: "name" },
+      })
+      .sort({ date: -1 })
+      .lean();
+
+    const formattedLeaves = allLeaves.map((leave: any) => {
+      if (leave.userId) {
+        let roleName = "Staff";
+        if (leave.userId.role && typeof leave.userId.role === "object" && leave.userId.role.name) {
+          roleName = leave.userId.role.name;
+        } else if (typeof leave.userId.role === "string") {
+          roleName = leave.userId.role;
+        }
+        return {
+          ...leave,
+          userId: {
+            ...leave.userId,
+            role: roleName,
+          },
+        };
+      }
+      return leave;
+    });
+
+    return NextResponse.json({ leaves: formattedLeaves }, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { message: "Error fetching leaves", error: error.message },
+      { status: 500 }
+    );
   }
 }
 
 export async function PUT(request: Request) {
   try {
     await connectToDatabase();
-    const { leaveId, status } = await request.json(); // status = "Approved" | "Rejected"
+    const body = await request.json();
+    const { leaveId, id, _id, status } = body; // status = "Approved" | "Rejected"
+    const targetId = leaveId || id || _id;
 
-    if (!leaveId || !status) return NextResponse.json({ message: "Invalid data" }, { status: 400 });
+    if (!targetId || !status) {
+      return NextResponse.json(
+        { message: "leaveId and status are required" },
+        { status: 400 }
+      );
+    }
 
     const updatedLeave = await Leave.findByIdAndUpdate(
-      leaveId,
+      targetId,
       { status },
       { new: true }
-    );
+    ).populate({
+      path: "userId",
+      select: "name role",
+      populate: { path: "role", select: "name" },
+    });
 
-    return NextResponse.json({ message: `Leave ${status} successfully` });
-  } catch (error) {
-    return NextResponse.json({ message: "Error updating leave" }, { status: 500 });
+    if (!updatedLeave) {
+      return NextResponse.json(
+        { message: "Leave request not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { message: `Leave ${status} successfully`, leave: updatedLeave },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    return NextResponse.json(
+      { message: "Error updating leave", error: error.message },
+      { status: 500 }
+    );
   }
 }

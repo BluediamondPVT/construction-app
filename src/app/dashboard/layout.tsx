@@ -64,6 +64,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         { name: "Staff", href: "/dashboard/hr/employees", icon: Users },
         { name: "Attendance", href: "/dashboard/hr/attendance", icon: FileClock },
         { name: "Leaves", href: "/dashboard/hr/leaves", icon: ClipboardList },
+        { name: "Payroll", href: "/dashboard/hr/payroll", icon: Wallet },
       ];
     }
     else if (currentUser.role === "Store") {

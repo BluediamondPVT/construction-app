@@ -24,3 +24,41 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom React DatePicker Styles for Premium UI matching screenshot */
+.react-datepicker {
+  @apply bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-2xl font-sans overflow-hidden;
+}
+.react-datepicker__header {
+  @apply bg-white dark:bg-slate-900 border-0 p-0;
+}
+.react-datepicker-popper {
+  @apply z-[100];
+}
+.react-datepicker__month {
+  @apply px-2 sm:px-3 pb-3 sm:pb-4 pt-1;
+}
+.react-datepicker__day-names {
+  @apply flex justify-around px-2 sm:px-3 mt-2;
+}
+.react-datepicker__day-name {
+  @apply text-slate-400 dark:text-slate-500 font-bold text-[10px] sm:text-[11px] uppercase w-7 h-7 sm:w-8 sm:h-8 inline-flex items-center justify-center m-0.5;
+}
+.react-datepicker__week {
+  @apply flex justify-around;
+}
+.react-datepicker__day {
+  @apply text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full font-medium text-xs sm:text-sm w-7 h-7 sm:w-8 sm:h-8 inline-flex items-center justify-center m-0.5 transition-all cursor-pointer;
+}
+.react-datepicker__day--outside-month {
+  @apply text-slate-300 dark:text-slate-600;
+}
+.react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
+  @apply bg-blue-200 dark:bg-blue-500/30 text-blue-950 dark:text-blue-100 font-bold shadow-sm;
+}
+.react-datepicker__day--today {
+  @apply font-extrabold text-blue-600 dark:text-blue-400;
+}
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle {
+  @apply fill-white dark:fill-slate-900 text-slate-200 dark:text-slate-800 stroke-slate-200 dark:stroke-slate-800;
+}

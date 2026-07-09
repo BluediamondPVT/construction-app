@@ -49,8 +49,8 @@ const AttendanceSchema = new Schema<IAttendance>(
 
         status: {
             type: String,
-            enum: ["In Progress", "Present", "Absent", "Missed Out"],
-            default: "Absent"
+            enum: ["Present", "Absent", "In Progress", "Missed Out"],
+            default: "In Progress"
         },
         isEditedByHR: { type: Boolean, default: false },
         hrNotes: { type: String, default: "" },

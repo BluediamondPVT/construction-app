@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Users, Clock, ClipboardList, LayoutDashboard } from "lucide-react";
+import { Users, Clock, ClipboardList, LayoutDashboard, Wallet } from "lucide-react";
 import Link from "next/link";
 import AttendanceCard from "@/components/AttendanceCard";
 
@@ -35,7 +35,7 @@ export default function HROverviewDashboard() {
       </div>
 
       {/* QUICK STATUS METRICS */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <Link href="/dashboard/hr/employees" className="bg-white/60 dark:bg-slate-900/40 backdrop-blur-md border p-6 rounded-2xl shadow-sm hover:scale-[1.01] transition-transform flex items-center justify-between">
           <div>
             <span className="text-xs font-semibold text-slate-400 block uppercase">Total Personnel</span>
@@ -58,6 +58,14 @@ export default function HROverviewDashboard() {
             <span className="text-3xl font-extrabold text-slate-900 dark:text-white">{stats.pendingLeaves} Pending</span>
           </div>
           <ClipboardList className="h-8 w-8 text-yellow-500 opacity-80" />
+        </Link>
+
+        <Link href="/dashboard/hr/payroll" className="bg-white/60 dark:bg-slate-900/40 backdrop-blur-md border p-6 rounded-2xl shadow-sm hover:scale-[1.01] transition-transform flex items-center justify-between">
+          <div>
+            <span className="text-xs font-semibold text-slate-400 block uppercase">Calculation Engine</span>
+            <span className="text-3xl font-extrabold text-slate-900 dark:text-white">Payroll Hub</span>
+          </div>
+          <Wallet className="h-8 w-8 text-indigo-500 opacity-80" />
         </Link>
       </div>
     </div>
