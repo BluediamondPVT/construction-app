@@ -5,8 +5,9 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import {
   LayoutDashboard, Users, Settings, ShieldCheck, Package, ShoppingCart,
-  Briefcase, FileText, IndianRupee, PenTool, Megaphone, HardHat, FileClock, Wallet, ClipboardList
+  Briefcase, FileText, IndianRupee, PenTool, Megaphone, HardHat, FileClock, Wallet, ClipboardList, CalendarDays
 } from "lucide-react";
+
 import Sidebar from "@/components/dashboard/Sidebar";
 import Header from "@/components/dashboard/Header";
 import BottomNav from "@/components/dashboard/BottomNav"; // 🚀 NEW IMPORT
@@ -64,8 +65,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         { name: "Staff", href: "/dashboard/hr/employees", icon: Users },
         { name: "Attendance", href: "/dashboard/hr/attendance", icon: FileClock },
         { name: "Leaves", href: "/dashboard/hr/leaves", icon: ClipboardList },
+        { name: "Holidays", href: "/dashboard/hr/holidays", icon: CalendarDays },
         { name: "Payroll", href: "/dashboard/hr/payroll", icon: Wallet },
       ];
+
     }
     else if (currentUser.role === "Store") {
       navItems = [
@@ -130,7 +133,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       />
 
       {/* Content Stream */}
-      <div className="flex-1 flex flex-col min-w-0 h-screen relative z-10">
+      <div className="flex-1 flex flex-col min-w-0 h-screen relative">
         <Header
           setIsSidebarOpen={setIsSidebarOpen}
           handleLogout={handleLogout}

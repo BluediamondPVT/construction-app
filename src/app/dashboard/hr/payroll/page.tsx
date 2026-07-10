@@ -33,6 +33,9 @@ interface PayrollRecord {
   totalWorkingHours: number;
   averageWorkingDays: number;
   overtimeHours: number;
+  approvedLeavesCount?: number;
+  paidLeaveDays?: number;
+  lwpDays?: number;
   dailyRate: number;
   overtimeRate: number;
   baseCalculatedEarnings: number;
@@ -447,8 +450,24 @@ export default function PayrollDashboardPage() {
                         <div className="text-xs text-slate-500">{rec.user?.email || ""}</div>
                       </td>
 
-                      <td className="py-4 px-4 text-center font-semibold text-slate-700 dark:text-slate-300">
-                        {rec.totalWorkingHours} hrs
+                      <td className="py-4 px-4 text-center">
+                        <div className="font-semibold text-slate-700 dark:text-slate-300">
+                          {rec.totalWorkingHours} hrs
+                        </div>
+                        {((rec.approvedLeavesCount || 0) > 0) && (
+                          <div className="mt-1 flex flex-col items-center gap-0.5">
+                            {(rec.paidLeaveDays || 0) > 0 && (
+                              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold border border-emerald-500/20">
+                                🌴 1 Paid Leave (+9h)
+                              </span>
+                            )}
+                            {(rec.lwpDays || 0) > 0 && (
+                              <span className="px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-700 dark:text-rose-300 text-[10px] font-bold border border-rose-500/20">
+                                ⚠️ {rec.lwpDays} LWP Day(s)
+                              </span>
+                            )}
+                          </div>
+                        )}
                       </td>
 
                       <td className="py-4 px-4 text-center">

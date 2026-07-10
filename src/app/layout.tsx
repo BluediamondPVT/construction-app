@@ -10,6 +10,8 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700"], // Regular, Medium, SemiBold, Bold
 });
 
+
+
 export const metadata: Metadata = {
   title: "BDIT Academic",
   description: "Modern construction management software",

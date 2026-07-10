@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 import Attendance from "@/models/Attendance";
 import Leave from "@/models/Leave";
+import PublicHoliday from "@/models/PublicHoliday";
 import * as jose from "jose";
 
 export async function GET(request: Request) {
@@ -27,8 +28,10 @@ export async function GET(request: Request) {
 
     const attendances = await Attendance.find({ userId, date: { $regex: datePattern } });
     const leaves = await Leave.find({ userId, date: { $regex: datePattern } });
+    const holidays = await PublicHoliday.find({ isActive: true, dateString: { $regex: datePattern } });
 
-    return NextResponse.json({ attendances, leaves });
+    return NextResponse.json({ attendances, leaves, holidays });
+
   } catch (error) {
     console.error("MONTHLY FETCH ERROR:", error);
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });

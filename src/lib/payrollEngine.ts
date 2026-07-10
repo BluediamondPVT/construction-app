@@ -1,9 +1,12 @@
 // src/lib/payrollEngine.ts
 import { connectToDatabase } from "@/lib/mongodb";
 import Attendance from "@/models/Attendance";
+import Leave from "@/models/Leave";
 import SalaryStructure from "@/models/SalaryStructure";
 import PayrollRecord, { IPayrollRecord } from "@/models/PayrollRecord";
 import User from "@/models/User";
+import PublicHoliday from "@/models/PublicHoliday";
+
 
 export interface PayrollCalculationResult {
   userId: string;
@@ -22,7 +25,12 @@ export interface PayrollCalculationResult {
   netPayableAmount: number;
   status: "DRAFT" | "APPROVED_LOCKED";
   isLocked: boolean;
+  approvedLeavesCount?: number;
+  paidLeaveDays?: number;
+  lwpDays?: number;
+  publicHolidayDays?: number;
 }
+
 
 /**
  * Calculates and updates monthly payroll for a specific employee.
@@ -54,8 +62,13 @@ export async function calculateEmployeePayrollForMonth(
       netPayableAmount: existingRecord.netPayableAmount,
       status: "APPROVED_LOCKED",
       isLocked: true,
+      approvedLeavesCount: existingRecord.approvedLeavesCount || 0,
+      paidLeaveDays: existingRecord.paidLeaveDays || 0,
+      lwpDays: existingRecord.lwpDays || 0,
+      publicHolidayDays: existingRecord.publicHolidayDays || 0,
     };
   }
+
 
   // 2. Fetch employee's SalaryStructure (or fallback to standard default rates)
   const salaryStruct = await SalaryStructure.findOne({ userId, isActive: true });
@@ -70,6 +83,31 @@ export async function calculateEmployeePayrollForMonth(
     userId,
     date: { $regex: regexMonth },
   });
+
+  // 3b. Query Leave model for 'Approved' leaves in this periodMonth ("YYYY-MM")
+  const approvedLeaves = await Leave.find({
+    userId,
+    status: "Approved",
+    date: { $regex: regexMonth },
+  });
+
+  // 3c. Query active PublicHoliday records for this periodMonth ("YYYY-MM")
+  const activeHolidays = await PublicHoliday.find({
+    isActive: true,
+    dateString: { $regex: regexMonth },
+  });
+
+  const approvedLeavesCount = approvedLeaves.length;
+
+
+  // Official Leave Policy:
+  // Approved Paid Leaves (CL, SL, EL, Maternity, Paternity, Comp-Off, Bereavement, Marriage, TL) credit standard shift hours.
+  // Approved LWP (Leave Without Pay) days do NOT add working hours (salary deduction applies).
+  const paidLeaveRecords = approvedLeaves.filter((l: any) => l.type !== "LWP");
+  const lwpRecords = approvedLeaves.filter((l: any) => l.type === "LWP");
+
+  const paidLeaveDays = paidLeaveRecords.length;
+  const lwpDays = lwpRecords.length;
 
   let totalPresentDays = 0;
   let totalAbsentDays = 0;
@@ -101,9 +139,35 @@ export async function calculateEmployeePayrollForMonth(
         }
       }
     } else if (record.status === "Absent") {
-      totalAbsentDays += 1;
+      // If the absent mark falls on a declared Public Holiday, do NOT count it as a penalized absent day
+      const isHoliday = activeHolidays.some((h: any) => h.dateString === record.date);
+      if (!isHoliday) {
+        totalAbsentDays += 1;
+      }
     }
   }
+
+  // Calculate Public Holiday credit: Any active holiday where employee did not work is treated as a Paid Holiday
+  let publicHolidayDays = 0;
+  for (const holiday of activeHolidays) {
+    const workedOnHoliday = attendanceRecords.some(
+      (r: any) => r.date === holiday.dateString && (r.status === "Present" || r.status === "In Progress")
+    );
+    if (!workedOnHoliday) {
+      publicHolidayDays += 1;
+    }
+  }
+
+  // Add up to 1 day's worth of hours for the allowed Paid Leave
+  if (paidLeaveDays > 0) {
+    totalWorkingHours += paidLeaveDays * standardShiftHours;
+  }
+
+  // Add standard shift hours for each Public Holiday where employee did not work
+  if (publicHolidayDays > 0) {
+    totalWorkingHours += publicHolidayDays * standardShiftHours;
+  }
+
 
   // Round metrics cleanly
   totalWorkingHours = Number(totalWorkingHours.toFixed(2));
@@ -117,10 +181,12 @@ export async function calculateEmployeePayrollForMonth(
   const overtimeEarnings = Number((totalOvertimeHours * overtimeRate).toFixed(2));
 
   // Absent penalty deductions (if salaried employee pro-rata deduction applies)
+  // Ensure we don't deduct for the 1 allowed Paid Leave
   let absentPenaltyDeductions = 0;
-  if (monthlyFixedSalary > 0 && totalAbsentDays > 0) {
+  const effectiveAbsentDays = Math.max(0, totalAbsentDays - paidLeaveDays);
+  if (monthlyFixedSalary > 0 && effectiveAbsentDays > 0) {
     const dailyEquivalent = monthlyFixedSalary / 30;
-    absentPenaltyDeductions = Number((totalAbsentDays * dailyEquivalent).toFixed(2));
+    absentPenaltyDeductions = Number((effectiveAbsentDays * dailyEquivalent).toFixed(2));
   }
 
   // Keep existing HR adjustments if draft existed
@@ -142,7 +208,12 @@ export async function calculateEmployeePayrollForMonth(
         totalWorkingHours,
         averageWorkingDays,
         overtimeHours: totalOvertimeHours,
+        approvedLeavesCount,
+        paidLeaveDays,
+        lwpDays,
+        publicHolidayDays,
         dailyRate,
+
         overtimeRate,
         baseCalculatedEarnings,
         overtimeEarnings,
@@ -172,8 +243,13 @@ export async function calculateEmployeePayrollForMonth(
     netPayableAmount,
     status: "DRAFT",
     isLocked: false,
+    approvedLeavesCount,
+    paidLeaveDays,
+    lwpDays,
+    publicHolidayDays,
   };
 }
+
 
 /**
  * Runs calculation engine for all active employees for a given month.

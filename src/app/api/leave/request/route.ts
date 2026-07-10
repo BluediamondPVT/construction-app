@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 import Leave from "@/models/Leave";
+import PublicHoliday from "@/models/PublicHoliday";
 import * as jose from "jose";
 
 export async function POST(request: Request) {
@@ -21,8 +22,18 @@ export async function POST(request: Request) {
 
     await connectToDatabase();
 
+    // Check if date is a declared Public Holiday
+    const holiday = await PublicHoliday.findOne({ dateString: date, isActive: true });
+    if (holiday) {
+      return NextResponse.json(
+        { message: `Cannot apply for leave on '${holiday.name}' (${date}) as it is already a declared Paid Holiday.` },
+        { status: 400 }
+      );
+    }
+
     // Check if leave already requested for this date
     const existingLeave = await Leave.findOne({ userId, date });
+
     if (existingLeave) {
       return NextResponse.json({ message: "Leave already requested for this date" }, { status: 400 });
     }

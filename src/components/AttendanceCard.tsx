@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { MapPin, Clock, CheckCircle, AlertTriangle, Fingerprint, CalendarDays } from "lucide-react";
 import CalendarModal from "./attendance/CalendarModal";
+import LeaveBalancesWidget from "./attendance/LeaveBalancesWidget";
 
 export default function AttendanceCard() {
   const [isLoading, setIsLoading] = useState(true);
@@ -191,6 +192,10 @@ export default function AttendanceCard() {
             <p>{locationError}</p>
           </div>
         )}
+      </div>
+
+      <div className="mt-6">
+        <LeaveBalancesWidget />
       </div>
 
       <CalendarModal 

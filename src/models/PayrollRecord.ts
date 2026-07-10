@@ -21,6 +21,13 @@ export interface IPayrollRecord extends Document {
   averageWorkingDays: number;
   overtimeHours: number;
 
+  // Leave Quota & LWP Tracking
+  approvedLeavesCount?: number;
+  paidLeaveDays?: number;
+  lwpDays?: number;
+  publicHolidayDays?: number;
+
+
   // Financial Breakdowns
   dailyRate: number;
   overtimeRate: number;
@@ -51,6 +58,12 @@ const PayrollRecordSchema = new Schema<IPayrollRecord>(
     totalWorkingHours: { type: Number, default: 0 },
     averageWorkingDays: { type: Number, default: 0 },
     overtimeHours: { type: Number, default: 0 },
+
+    approvedLeavesCount: { type: Number, default: 0 },
+    paidLeaveDays: { type: Number, default: 0 },
+    lwpDays: { type: Number, default: 0 },
+    publicHolidayDays: { type: Number, default: 0 },
+
 
     dailyRate: { type: Number, default: 0 },
     overtimeRate: { type: Number, default: 0 },

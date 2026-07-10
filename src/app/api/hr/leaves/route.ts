@@ -18,7 +18,19 @@ export async function GET(request: Request) {
       .lean();
 
     const formattedLeaves = allLeaves.map((leave: any) => {
-      if (leave.userId) {
+      const periodMonth = leave.date ? String(leave.date).slice(0, 7) : "";
+      const userIdStr = leave.userId?._id?.toString() || leave.userId?.toString();
+
+      const approvedCountInMonth = allLeaves.filter(
+        (l: any) =>
+          (l.userId?._id?.toString() || l.userId?.toString()) === userIdStr &&
+          l.status === "Approved" &&
+          String(l.date).startsWith(periodMonth)
+      ).length;
+
+      const isPaidLeaveQuotaUsed = approvedCountInMonth >= 1;
+
+      if (leave.userId && typeof leave.userId === "object") {
         let roleName = "Staff";
         if (leave.userId.role && typeof leave.userId.role === "object" && leave.userId.role.name) {
           roleName = leave.userId.role.name;
@@ -27,13 +39,25 @@ export async function GET(request: Request) {
         }
         return {
           ...leave,
+          approvedLeavesThisMonth: approvedCountInMonth,
+          isPaidLeaveQuotaUsed,
+          payImpactText: isPaidLeaveQuotaUsed
+            ? `LWP (${approvedCountInMonth}/1 Quota Used)`
+            : "Paid Leave (0/1 Used)",
           userId: {
             ...leave.userId,
             role: roleName,
           },
         };
       }
-      return leave;
+      return {
+        ...leave,
+        approvedLeavesThisMonth: approvedCountInMonth,
+        isPaidLeaveQuotaUsed,
+        payImpactText: isPaidLeaveQuotaUsed
+          ? `LWP (${approvedCountInMonth}/1 Quota Used)`
+          : "Paid Leave (0/1 Used)",
+      };
     });
 
     return NextResponse.json({ leaves: formattedLeaves }, { status: 200 });
