@@ -114,9 +114,9 @@ export default function AttendanceCard() {
 
   if (isLoading) {
     return (
-      <div className="bg-white/60 dark:bg-slate-900/40 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/50 dark:border-white/10 shadow-sm animate-pulse flex flex-col items-center justify-center h-48">
-        <div className="h-8 w-32 bg-slate-200 dark:bg-slate-700 rounded-lg mb-4"></div>
-        <div className="h-12 w-48 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+      <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800 rounded-2xl p-6 shadow-sm animate-pulse flex flex-col items-center justify-center h-48">
+        <div className="h-8 w-32 bg-slate-800 rounded-lg mb-4"></div>
+        <div className="h-12 w-48 bg-slate-800 rounded-full"></div>
       </div>
     );
   }
@@ -133,24 +133,24 @@ export default function AttendanceCard() {
 
   return (
     <>
-      <div className="bg-white/60 dark:bg-slate-900/40 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-slate-200/50 dark:border-white/10 shadow-lg relative overflow-hidden transition-all">
+      <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800 rounded-2xl p-6 md:p-8 shadow-lg relative overflow-hidden hover:bg-slate-900/60 hover:border-slate-700 transition-all duration-300">
         <div className={`absolute -top-10 -right-10 w-32 h-32 blur-3xl rounded-full opacity-20 pointer-events-none transition-colors duration-1000 ${hasPunchedOut ? 'bg-slate-500' : hasPunchedIn ? 'bg-rose-500' : 'bg-emerald-500'}`}></div>
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
           <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center justify-center md:justify-start">
+            <h2 className="text-2xl font-bold tracking-tight text-white flex items-center justify-center md:justify-start">
               <Clock className="mr-2 h-6 w-6 text-blue-500" />
               Daily Attendance
             </h2>
-            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mt-1 flex items-center justify-center md:justify-start">
+            <p className="text-sm font-medium text-slate-400 mt-1 flex items-center justify-center md:justify-start">
               <MapPin className="mr-1 h-4 w-4" /> Device location tracking active
             </p>
           </div>
 
           <div className="flex flex-col items-center gap-3 w-full md:w-auto">
             {hasPunchedIn && hasPunchedOut ? (
-              <div className="flex items-center px-6 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold rounded-2xl border border-slate-200 dark:border-slate-700">
-                <CheckCircle className="mr-2 h-5 w-5 text-emerald-500" />
+              <div className="flex items-center bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-full px-4 py-1.5 font-bold shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+                <CheckCircle className="mr-2 h-4 w-4 text-emerald-400" />
                 Shift Completed
               </div>
             ) : (
@@ -179,7 +179,7 @@ export default function AttendanceCard() {
 
             <button 
               onClick={() => setIsCalendarOpen(true)}
-              className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mt-2 flex items-center transition-colors"
+              className="text-xs font-semibold text-blue-400/80 hover:text-blue-400 mt-2 flex items-center transition-colors"
             >
               🌴 Request Leave / View Calendar
             </button>

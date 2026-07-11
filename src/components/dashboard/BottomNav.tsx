@@ -11,8 +11,8 @@ interface BottomNavProps {
 export default function BottomNav({ navItems }: BottomNavProps) {
   const pathname = usePathname();
   
-  // Sirf pehle 4 items nikalenge bottom bar ke liye
-  const bottomItems = navItems.slice(0, 4);
+  // Sirf pehle 4 items nikalenge bottom bar ke liye (excluding section headers)
+  const bottomItems = navItems.filter((item) => !item.isSection && item.href).slice(0, 4);
 
   if (bottomItems.length === 0) return null;
 

@@ -14,6 +14,7 @@ import {
   Loader2,
   Filter,
 } from "lucide-react";
+import { toast } from "sonner";
 
 export interface PublicHolidayItem {
   _id: string;
@@ -33,6 +34,17 @@ export default function HRHolidaysPage() {
   const [notification, setNotification] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   // Modal states
+  const [confirmDialog, setConfirmDialog] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    onConfirm: () => void;
+  }>({
+    isOpen: false,
+    title: "",
+    message: "",
+    onConfirm: () => {},
+  });
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [editingHoliday, setEditingHoliday] = useState<PublicHolidayItem | null>(null);
   const [formData, setFormData] = useState<{
@@ -70,6 +82,8 @@ export default function HRHolidaysPage() {
   }, [selectedYear]);
 
   const showNotification = (type: "success" | "error", text: string) => {
+    if (type === "success") toast.success(text);
+    else toast.error(text);
     setNotification({ type, text });
     setTimeout(() => setNotification(null), 4000);
   };
@@ -186,41 +200,66 @@ export default function HRHolidaysPage() {
     }
   };
 
-  const handleDelete = async (id: string, name: string) => {
-    if (!confirm(`Are you sure you want to delete '${name}'?`)) return;
+  const executeDelete = async (id: string, name: string) => {
+    const toastId = toast.loading(`Deleting holiday '${name}'...`);
     try {
       const res = await fetch(`/api/hr/holidays?id=${id}`, { method: "DELETE" });
       if (res.ok) {
         setHolidays((prev) => prev.filter((h) => h._id !== id));
-        showNotification("success", `Deleted holiday '${name}'`);
+        toast.success(`Deleted holiday '${name}'`, { id: toastId });
+        setNotification({ type: "success", text: `Deleted holiday '${name}'` });
       } else {
+        toast.error("Failed to delete holiday", { id: toastId });
         showNotification("error", "Failed to delete holiday");
       }
     } catch (err) {
+      toast.error("Error deleting holiday", { id: toastId });
       showNotification("error", "Error deleting holiday");
     }
   };
 
+  const handleDelete = (id: string, name: string) => {
+    setConfirmDialog({
+      isOpen: true,
+      title: "Delete Holiday",
+      message: `Are you sure you want to delete '${name}'?`,
+      onConfirm: () => {
+        setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
+        executeDelete(id, name);
+      },
+    });
+  };
+
+  // 🎨 NEON THEME BADGES
   const getTypeBadge = (type: string) => {
     if (type === "National") {
       return (
-        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-500/10 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-500/20">
+        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 shadow-[0_0_10px_rgba(59,130,246,0.1)] uppercase tracking-wider">
           🇮🇳 National
         </span>
       );
     }
     if (type === "Regional") {
       return (
-        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-500/10 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/20">
+        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 shadow-[0_0_10px_rgba(245,158,11,0.1)] uppercase tracking-wider">
           🏛️ Regional
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
+      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-[0_0_10px_rgba(16,185,129,0.1)] uppercase tracking-wider">
         🌙 Religious
       </span>
     );
+  };
+
+  // 🎨 NEON THEME CARD WRAPPERS
+  const getCardTheme = (type: string, isActive: boolean) => {
+    if (!isActive) return "border-slate-800 bg-slate-900/40 opacity-50 grayscale transition-all";
+    
+    if (type === "National") return "border-blue-500/30 bg-slate-900/40 hover:bg-blue-500/5 hover:border-blue-500/60 shadow-[inset_0_0_15px_rgba(59,130,246,0.02)] hover:shadow-[0_0_20px_rgba(59,130,246,0.1)]";
+    if (type === "Regional") return "border-amber-500/30 bg-slate-900/40 hover:bg-amber-500/5 hover:border-amber-500/60 shadow-[inset_0_0_15px_rgba(245,158,11,0.02)] hover:shadow-[0_0_20px_rgba(245,158,11,0.1)]";
+    return "border-emerald-500/30 bg-slate-900/40 hover:bg-emerald-500/5 hover:border-emerald-500/60 shadow-[inset_0_0_15px_rgba(16,185,129,0.02)] hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]";
   };
 
   const filteredHolidays = holidays.filter((item) => {
@@ -229,94 +268,93 @@ export default function HRHolidaysPage() {
   });
 
   return (
-    <div className="space-y-8 pb-16">
+    <div className="space-y-6 sm:space-y-8 pb-16 text-slate-200">
+      
       {/* Toast Notification */}
       {notification && (
         <div
-          className={`fixed top-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-xl border flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-300 ${
+          className={`fixed top-6 right-4 sm:right-6 z-50 px-4 py-3 rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.5)] border flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-300 backdrop-blur-md ${
             notification.type === "success"
-              ? "bg-emerald-50 dark:bg-emerald-950 border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200"
-              : "bg-rose-50 dark:bg-rose-950 border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-200"
+              ? "bg-emerald-950/80 border-emerald-500/50 text-emerald-400"
+              : "bg-rose-950/80 border-rose-500/50 text-rose-400"
           }`}
         >
           {notification.type === "success" ? (
-            <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+            <CheckCircle2 className="h-5 w-5 text-emerald-400 flex-shrink-0" />
           ) : (
-            <AlertCircle className="h-5 w-5 text-rose-600 dark:text-rose-400 flex-shrink-0" />
+            <AlertCircle className="h-5 w-5 text-rose-400 flex-shrink-0" />
           )}
-          <span className="text-sm font-semibold">{notification.text}</span>
+          <span className="text-xs sm:text-sm font-bold tracking-wide">{notification.text}</span>
         </div>
       )}
 
-      {/* Header & Year Switcher */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Header & Actions */}
+      <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-5">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-            <CalendarDays className="mr-3 h-8 w-8 text-blue-600 dark:text-blue-400" />
+          <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center tracking-tight">
+            <CalendarDays className="mr-3 h-6 w-6 text-blue-500" />
             Company Public Holidays
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm text-slate-400 mt-1.5">
             Manage fixed & dynamic lunar public holidays. Paid automatically by the payroll engine.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
           {/* Year Tabs */}
-          <div className="flex bg-slate-200/70 dark:bg-slate-800/80 p-1 rounded-xl border border-slate-300/40 dark:border-slate-700">
+          <div className="flex bg-slate-900/60 p-1.5 rounded-xl border border-slate-800 shadow-inner">
             {[currentYear, currentYear + 1].map((year) => (
               <button
                 key={year}
                 onClick={() => setSelectedYear(year)}
-                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                className={`px-3 sm:px-4 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all ${
                   selectedYear === year
-                    ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                    ? "bg-blue-600 text-white shadow-[0_0_10px_rgba(37,99,235,0.4)]"
+                    : "text-slate-500 hover:text-white hover:bg-slate-800"
                 }`}
               >
-                {year} {year === currentYear ? "(Current)" : "(Upcoming)"}
+                {year} <span className="hidden sm:inline">{year === currentYear ? "(Current)" : "(Upcoming)"}</span>
               </button>
             ))}
           </div>
 
-          {/* Pre-Seed Standard Holidays Button */}
-          <button
-            onClick={handlePreSeed}
-            disabled={isSeeding}
-            className="flex items-center px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-bold shadow-md shadow-indigo-500/20 transition-all disabled:opacity-50"
-          >
-            {isSeeding ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Sparkles className="mr-2 h-4 w-4" />
-            )}
-            Pre-Seed Standard Holidays ({selectedYear})
-          </button>
+          {/* Action Buttons */}
+          <div className="flex w-full sm:w-auto gap-3">
+            <button
+              onClick={handlePreSeed}
+              disabled={isSeeding}
+              className="flex-1 sm:flex-none flex items-center justify-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600/80 to-purple-600/80 hover:from-indigo-500 hover:to-purple-500 border border-indigo-500/50 text-white text-xs font-bold shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all disabled:opacity-50"
+            >
+              {isSeeding ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Sparkles className="mr-2 h-4 w-4" />}
+              <span className="hidden sm:inline">Pre-Seed Standard</span>
+              <span className="sm:hidden">Pre-Seed</span>
+            </button>
 
-          {/* Add Holiday Button */}
-          <button
-            onClick={handleOpenAddModal}
-            className="flex items-center px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-500/20 transition-all"
-          >
-            <Plus className="mr-1.5 h-4 w-4" /> Add Holiday
-          </button>
+            <button
+              onClick={handleOpenAddModal}
+              className="flex-1 sm:flex-none flex items-center justify-center px-4 py-2.5 rounded-xl bg-blue-600/20 hover:bg-blue-600/40 border border-blue-500/50 text-blue-400 hover:text-white text-xs font-bold shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all"
+            >
+              <Plus className="mr-1.5 h-4 w-4" /> Add <span className="hidden sm:inline ml-1">Holiday</span>
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-        <div className="flex items-center gap-2">
-          <Filter className="h-4 w-4 text-slate-400" />
-          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-            Filter Type:
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <Filter className="h-4 w-4 text-slate-500 hidden sm:block" />
+          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:block mr-2">
+            Filter:
           </span>
           {["ALL", "National", "Regional", "Religious"].map((t) => (
             <button
               key={t}
               onClick={() => setFilterType(t)}
-              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 sm:px-4 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all border ${
                 filterType === t
-                  ? "bg-blue-600 text-white"
-                  : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                  ? "bg-slate-800 text-white border-slate-600 shadow-sm"
+                  : "bg-transparent text-slate-500 border-transparent hover:border-slate-700 hover:bg-slate-800/50 hover:text-slate-300"
               }`}
             >
               {t}
@@ -324,34 +362,34 @@ export default function HRHolidaysPage() {
           ))}
         </div>
 
-        <div className="text-xs font-bold text-slate-500 dark:text-slate-400">
-          Total: <span className="text-slate-900 dark:text-white">{filteredHolidays.length}</span>
+        <div className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-800 w-fit">
+          Total: <span className="text-white ml-1">{filteredHolidays.length}</span>
         </div>
       </div>
 
       {/* Holidays Display Grid */}
       {isLoading ? (
-        <div className="h-64 flex flex-col items-center justify-center text-slate-400">
-          <Loader2 className="h-8 w-8 animate-spin mb-3 text-blue-500" />
-          <span className="text-sm font-medium">Loading {selectedYear} Public Holidays...</span>
+        <div className="h-64 flex flex-col items-center justify-center text-blue-400/70 bg-slate-900/30 rounded-3xl border border-slate-800">
+          <Loader2 className="h-8 w-8 animate-spin mb-3" />
+          <span className="text-xs font-bold tracking-widest uppercase">Fetching Records...</span>
         </div>
       ) : filteredHolidays.length === 0 ? (
-        <div className="bg-white dark:bg-slate-800/50 rounded-3xl p-10 border border-dashed border-slate-300 dark:border-slate-700 text-center">
-          <Calendar className="h-12 w-12 text-slate-400 mx-auto mb-3" />
-          <h3 className="text-lg font-bold text-slate-800 dark:text-white">No Holidays Found</h3>
-          <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mt-1 mb-6">
-            Click &apos;Pre-Seed Standard Holidays&apos; to instantly populate Republic Day, Idul Fitr, Eid ul Azha, Independence Day, and more for {selectedYear}.
+        <div className="bg-slate-900/30 backdrop-blur-sm rounded-3xl p-8 sm:p-12 border border-dashed border-slate-700 text-center flex flex-col items-center justify-center">
+          <Calendar className="h-12 w-12 text-slate-600 mb-4" />
+          <h3 className="text-lg font-bold text-white tracking-wide">No Holidays Found</h3>
+          <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mt-2 mb-6 leading-relaxed">
+            Click 'Pre-Seed Standard Holidays' to instantly populate Republic Day, Idul Fitr, Eid ul Azha, Independence Day, and more for <strong className="text-blue-400">{selectedYear}</strong>.
           </p>
           <button
             onClick={handlePreSeed}
             disabled={isSeeding}
-            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold shadow-lg"
+            className="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold shadow-[0_0_20px_rgba(99,102,241,0.4)] transition-all hover:scale-105"
           >
             Pre-Seed Standard Holidays
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filteredHolidays.map((holiday) => {
             const dateObj = new Date(holiday.dateString);
             const formattedDate = dateObj.toLocaleDateString("en-IN", {
@@ -364,41 +402,37 @@ export default function HRHolidaysPage() {
             return (
               <div
                 key={holiday._id}
-                className={`group relative bg-white dark:bg-slate-800/60 backdrop-blur-md rounded-2xl p-5 border transition-all duration-200 shadow-sm hover:shadow-md ${
-                  holiday.isActive
-                    ? "border-slate-200 dark:border-slate-700/80"
-                    : "border-slate-200/50 dark:border-slate-800 opacity-60"
-                }`}
+                className={`group relative backdrop-blur-xl rounded-2xl p-5 sm:p-6 transition-all duration-300 border ${getCardTheme(holiday.type, holiday.isActive)}`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1">
                       {formattedDate}
                     </span>
-                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-white mt-0.5">
+                    <h3 className="text-lg font-bold text-white tracking-wide">
                       {holiday.name}
                     </h3>
                   </div>
 
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5 flex-shrink-0">
                     {getTypeBadge(holiday.type)}
                   </div>
                 </div>
 
                 {holiday.description && (
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">
+                  <p className="text-[11px] sm:text-xs text-slate-400 mt-3 line-clamp-2 leading-relaxed">
                     {holiday.description}
                   </p>
                 )}
 
-                <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between">
+                <div className="mt-5 pt-4 border-t border-slate-800/60 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleToggleActive(holiday)}
-                      className={`px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase transition-colors border ${
+                      className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all border ${
                         holiday.isActive
-                          ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20"
-                          : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-600"
+                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20"
+                          : "bg-slate-800 text-slate-400 border-slate-700 hover:text-white"
                       }`}
                     >
                       {holiday.isActive ? "Active" : "Inactive"}
@@ -408,14 +442,14 @@ export default function HRHolidaysPage() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleOpenEditModal(holiday)}
-                      className="p-1.5 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
+                      className="p-2 rounded-lg text-slate-400 border border-transparent hover:border-blue-500/50 hover:text-blue-400 hover:bg-blue-500/10 transition-all"
                       title="Edit Holiday"
                     >
                       <Edit2 className="h-4 w-4" />
                     </button>
                     <button
                       onClick={() => handleDelete(holiday._id, holiday.name)}
-                      className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-colors"
+                      className="p-2 rounded-lg text-slate-400 border border-transparent hover:border-rose-500/50 hover:text-rose-400 hover:bg-rose-500/10 transition-all"
                       title="Delete Holiday"
                     >
                       <Trash2 className="h-4 w-4" />
@@ -428,25 +462,26 @@ export default function HRHolidaysPage() {
         </div>
       )}
 
-      {/* ADD / EDIT MODAL */}
+      {/* ✏️ ADD / EDIT MODAL */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 w-full max-w-md shadow-2xl border border-slate-200 dark:border-slate-800 animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="bg-[#0B1121] rounded-3xl p-6 sm:p-8 w-full max-w-md shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-slate-700/50 animate-in zoom-in-95 duration-200">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+              <h3 className="text-lg font-bold text-white flex items-center tracking-wide">
+                <CalendarDays className="w-5 h-5 mr-2 text-blue-500"/>
                 {editingHoliday ? "Edit Public Holiday" : "Add Public Holiday"}
               </h3>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-red-500 transition-colors"
+                className="p-1.5 rounded-full bg-slate-800 hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-colors"
               >
                 <XCircle className="h-5 w-5" />
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">
                   Holiday Name
                 </label>
                 <input
@@ -455,12 +490,12 @@ export default function HRHolidaysPage() {
                   placeholder="e.g. Republic Day or Idul Fitr"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900/50 text-white text-sm outline-none focus:border-blue-500 transition-colors placeholder:text-slate-600"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">
                   Date
                 </label>
                 <input
@@ -468,24 +503,26 @@ export default function HRHolidaysPage() {
                   required
                   value={formData.dateString}
                   onChange={(e) => setFormData({ ...formData, dateString: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900/50 text-white text-sm outline-none focus:border-blue-500 transition-colors [color-scheme:dark]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">
                   Holiday Type
                 </label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-3 gap-3">
                   {(["National", "Regional", "Religious"] as const).map((type) => (
                     <button
                       key={type}
                       type="button"
                       onClick={() => setFormData({ ...formData, type })}
-                      className={`py-2 rounded-xl text-xs font-bold border transition-all ${
+                      className={`py-2.5 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-wider border transition-all ${
                         formData.type === type
-                          ? "bg-blue-600 text-white border-blue-600"
-                          : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-200"
+                          ? type === "National" ? "bg-blue-500/20 text-blue-400 border-blue-500/50 shadow-[0_0_10px_rgba(59,130,246,0.2)]" :
+                            type === "Regional" ? "bg-amber-500/20 text-amber-400 border-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.2)]" :
+                            "bg-emerald-500/20 text-emerald-400 border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.2)]"
+                          : "bg-slate-800/50 text-slate-400 border-slate-700 hover:bg-slate-800 hover:text-white"
                       }`}
                     >
                       {type}
@@ -495,7 +532,7 @@ export default function HRHolidaysPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">
                   Description / Note
                 </label>
                 <textarea
@@ -503,20 +540,23 @@ export default function HRHolidaysPage() {
                   placeholder="Optional details (e.g., Subject to moon sighting)"
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-900/50 text-white text-sm outline-none focus:border-blue-500 transition-colors placeholder:text-slate-600 resize-none custom-scrollbar"
                 />
               </div>
 
-              <div className="flex items-center justify-between pt-2">
-                <label className="flex items-center cursor-pointer gap-2">
+              <div className="flex items-center justify-between pt-2 border-t border-slate-800">
+                <label className="flex items-center cursor-pointer gap-3 group">
+                  <div className={`w-5 h-5 rounded flex items-center justify-center border transition-colors ${formData.isActive ? 'bg-blue-600 border-blue-500' : 'bg-slate-800 border-slate-600'}`}>
+                    {formData.isActive && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
+                  </div>
                   <input
                     type="checkbox"
+                    className="hidden"
                     checked={formData.isActive}
                     onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                    className="rounded border-slate-300 text-blue-600 focus:ring-blue-500 h-4 w-4"
                   />
-                  <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                    Active (Applies to Payroll & Calendar)
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-400 group-hover:text-slate-300 uppercase tracking-widest">
+                    Active (Applies to Payroll)
                   </span>
                 </label>
               </div>
@@ -525,18 +565,53 @@ export default function HRHolidaysPage() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold transition-colors"
+                  className="flex-1 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold tracking-widest uppercase transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors shadow-lg shadow-blue-500/20"
+                  className="flex-1 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold tracking-widest uppercase transition-colors shadow-[0_0_20px_rgba(37,99,235,0.3)]"
                 >
-                  {editingHoliday ? "Save Changes" : "Create Holiday"}
+                  {editingHoliday ? "SAVE CHANGES" : "CREATE HOLIDAY"}
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* LIGHTWEIGHT DARK ENTERPRISE CONFIRM MODAL */}
+      {confirmDialog.isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="w-full max-w-md rounded-3xl bg-[#0F172A] border border-slate-700/60 p-6 shadow-2xl animate-in zoom-in-95 duration-200">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400">
+                <AlertCircle className="h-6 w-6" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white">{confirmDialog.title}</h3>
+              </div>
+            </div>
+            <p className="text-sm text-slate-300 mb-6 leading-relaxed">
+              {confirmDialog.message}
+            </p>
+            <div className="flex items-center justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setConfirmDialog((prev) => ({ ...prev, isOpen: false }))}
+                className="px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-400 bg-slate-800 hover:bg-slate-700 hover:text-white transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={confirmDialog.onConfirm}
+                className="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(244,63,94,0.3)] transition-all"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       )}

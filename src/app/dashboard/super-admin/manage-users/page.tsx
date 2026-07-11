@@ -15,7 +15,7 @@ import {
   UserCog,
   AlertTriangle,
 } from "lucide-react";
-import { toast } from "@/components/ui/toaster";
+import { toast } from "sonner";
 
 // 🚀 EXACT 6 MODULES AS PER YOUR ERP ARCHITECTURE
 const rolePermissionsMap: Record<string, string[]> = {

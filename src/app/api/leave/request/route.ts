@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       date,
       type,
       reason: reason || "",
-      status: "Pending" // Default status for HR
+      status: "Pending" 
     });
 
     return NextResponse.json({ message: "Leave requested successfully", leave: newLeave });
