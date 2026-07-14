@@ -1,0 +1,285 @@
+[{
+  "_id": {
+    "$oid": "6a2a9e9114cd12cf248211f9"
+  },
+  "name": "System Handler ",
+  "email": "rafey@mrgrp.in",
+  "passwordHash": "$2b$10$Uofdq0FBa67IVJz.Aq4j5O/SklhMcMy9Y/1Q9ky/CUtWJ3dQHFUvS",
+  "role": {
+    "$oid": "6a2a9e9114cd12cf248211f8"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-06-11T11:40:01.467Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-12T04:11:47.597Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54a89c9b11e0d2bbf608d7"
+  },
+  "name": "Mr. Yaseen Shaikh",
+  "email": "yaseen@mrgrp.in",
+  "passwordHash": "$2b$10$0Yub1Bg9trlJOQP5mOPbCed3lfQHPgt9RI2KEvACwtfjKZfAwOGHm",
+  "role": {
+    "$oid": "6a54a89c9b11e0d2bbf608d6"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T08:58:04.653Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T08:58:51.860Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54a8ef9b11e0d2bbf608d9"
+  },
+  "name": "Mr. Kaif Ansari",
+  "email": "kaif@mrgrp.in",
+  "passwordHash": "$2b$10$yphI01mBxtDpbIzN8D5ECO4lmdU5xGQlvy3UROZYqUGQhX01Rk2Iu",
+  "role": {
+    "$oid": "6a54a8ef9b11e0d2bbf608d8"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T08:59:27.352Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T08:59:27.352Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54a9269b11e0d2bbf608db"
+  },
+  "name": "Mr. Usama Ansari ",
+  "email": "usama@mrgrp.in",
+  "passwordHash": "$2b$10$69dzZsvBu9KYldJEFy3.e.E2h7pJkvlZKLYXZrTdaZdXOr6t/6PFK",
+  "role": {
+    "$oid": "6a54a9269b11e0d2bbf608da"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:00:22.716Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:00:22.716Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54aed3362aca15380079cb"
+  },
+  "name": "Abcd",
+  "email": "salim.whitestone@gmail.com",
+  "passwordHash": "$2b$10$Gskt63gmUKCVR5dgBA004ekViyMRBK9WkpMnRomipKurlLgECbNeu",
+  "role": {
+    "$oid": "6a54aed3362aca15380079ca"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:24:35.329Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:24:35.329Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54afb0362aca15380079d0"
+  },
+  "name": "demo",
+  "email": "salim@gmail.com",
+  "passwordHash": "$2b$10$zUDM1duu0VwAo0iyYdvpL.da/tF30DkIsrgH3E7gUMzbfBgQJE9KC",
+  "role": {
+    "$oid": "6a54afaf362aca15380079cf"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:28:16.054Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:28:16.054Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b05e998e0b1faff081d1"
+  },
+  "name": "Ms. Misbah Momin",
+  "email": "misbahh@mrgrp.in",
+  "passwordHash": "$2b$10$.tb9.gtWSAh8zUs6zS5YR./pnsAFMLNRvuX4F.u7KriMv4qgTMNAu",
+  "role": {
+    "$oid": "6a54b05e998e0b1faff081d0"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:31:10.935Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:45:27.212Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b3e174c2d1b5c2e5cded"
+  },
+  "name": "Mr. Arbaz Ansari",
+  "email": "arbaaz@mrgrp.in",
+  "passwordHash": "$2b$10$bNt.RIUsYYXy8d6hVtwjguo1Q.T0LJzC9weF7qJ7dFdW1LWpNP51a",
+  "role": {
+    "$oid": "6a54b3e174c2d1b5c2e5cdec"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:46:09.135Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:46:09.135Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b42d74c2d1b5c2e5cdf0"
+  },
+  "name": "Mr. Ali Hasnat Ansari",
+  "email": "hasnath1@mrgrp.in",
+  "passwordHash": "$2b$10$xVNL0AbxUosRhhgJ8FLZgOtIOMsxJrKeE1BK0gZ/WS8BijbVL3Bc2",
+  "role": {
+    "$oid": "6a54b42d74c2d1b5c2e5cdef"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:47:25.677Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:47:25.677Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b45b74c2d1b5c2e5cdf2"
+  },
+  "name": "Mr. Abdullah Baaghan",
+  "email": "abdullah@mrgrp.in",
+  "passwordHash": "$2b$10$.LaWU7ZwzyZg13eho3nQ.OqkJTGME5DAR1zpYeDfxo.ru5j1i6U2e",
+  "role": {
+    "$oid": "6a54b45b74c2d1b5c2e5cdf1"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:48:11.887Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:48:11.887Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b47474c2d1b5c2e5cdf4"
+  },
+  "name": "Mr. Abhishek Singh",
+  "email": "abhishek@mrgrp.in",
+  "passwordHash": "$2b$10$Em4xv1AUQTml/uGKZGNjjukVkdLDwvXlUzoVJLIbntSGqtPNRZxGC",
+  "role": {
+    "$oid": "6a54b47474c2d1b5c2e5cdf3"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:48:36.433Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:48:36.433Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b48a74c2d1b5c2e5cdf6"
+  },
+  "name": "Mr. Alam",
+  "email": "alam@mrgrp.in",
+  "passwordHash": "$2b$10$pYwIH1tn/ebq7JxcCCkaOuZEsK2XSaknp3wpbgSMr62hq/SKHdh4.",
+  "role": {
+    "$oid": "6a54b48a74c2d1b5c2e5cdf5"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:48:58.142Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:48:58.142Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b49e74c2d1b5c2e5cdf8"
+  },
+  "name": "Mr. Ejaz",
+  "email": "ejaz@mrgrp.in",
+  "passwordHash": "$2b$10$RqAeLnDZS/hD5b/jEtV7EORDcN.w9htk6NzWt0y5BFLGcAVihn7hi",
+  "role": {
+    "$oid": "6a54b49e74c2d1b5c2e5cdf7"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:49:18.895Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:49:18.895Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b4b574c2d1b5c2e5cdfa"
+  },
+  "name": "Mr. Afzal",
+  "email": "afzal@mrgrp.in",
+  "passwordHash": "$2b$10$7a3.gi6Nw40qUpp6DMz7AOXZ0UCW7Kuc/41pmbeIBwtHnRa9koVBO",
+  "role": {
+    "$oid": "6a54b4b474c2d1b5c2e5cdf9"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:49:41.066Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:49:41.066Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b4cf74c2d1b5c2e5cdfc"
+  },
+  "name": "Mr. Amik",
+  "email": "amik@mrgrp.in",
+  "passwordHash": "$2b$10$6UaCIKfgYHvJbc3okd.OX.1vIJvws8mBV.7WT0g1pLKtewQQqIvra",
+  "role": {
+    "$oid": "6a54b4cf74c2d1b5c2e5cdfb"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-07-13T09:50:07.188Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:50:07.188Z"
+  },
+  "__v": 0
+}]

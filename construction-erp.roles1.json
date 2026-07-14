@@ -1,0 +1,600 @@
+[{
+  "_id": {
+    "$oid": "6a2a9e9114cd12cf248211f8"
+  },
+  "name": "Super_Admin",
+  "permissions": [
+    "all_access"
+  ],
+  "createdAt": {
+    "$date": "2026-06-11T11:40:01.262Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-11T11:40:01.262Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a2aac8f560ac7ec1b55432b"
+  },
+  "name": "Store_abc@gmail.com",
+  "permissions": [
+    "view_material_logs",
+    "view_inventory",
+    "issue_material",
+    "add_material"
+  ],
+  "createdAt": {
+    "$date": "2026-06-11T12:39:43.475Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-16T12:32:30.242Z"
+  },
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "6a2aadf8560ac7ec1b55432d"
+  },
+  "name": "HR_info@gmail.in",
+  "permissions": [
+    "view_employees",
+    "add_employee",
+    "edit_payroll",
+    "view_reports"
+  ],
+  "createdAt": {
+    "$date": "2026-06-11T12:45:44.143Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-11T12:45:44.143Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a2aafd2560ac7ec1b55432f"
+  },
+  "name": "HR_support@macquarieenterprises.co.in",
+  "permissions": [
+    "view_employees",
+    "view_reports"
+  ],
+  "createdAt": {
+    "$date": "2026-06-11T12:53:38.357Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-11T12:53:38.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a2c094a32b14efcd314aaff"
+  },
+  "name": "Project_a@gmail.com",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material"
+  ],
+  "createdAt": {
+    "$date": "2026-06-12T13:27:38.541Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-12T13:27:38.541Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a2e35a716b1a4214fdd218f"
+  },
+  "name": "Marketing_arbaz@gmail.com",
+  "permissions": [
+    "manage_clients",
+    "manage_tenders",
+    "submit_quotations",
+    "track_negotiations"
+  ],
+  "createdAt": {
+    "$date": "2026-06-14T05:01:27.990Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T05:01:27.990Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a2e3b8216b1a4214fdd2191"
+  },
+  "name": "HR_b@gmail.com",
+  "permissions": [
+    "view_employees",
+    "add_employee",
+    "manage_payroll"
+  ],
+  "createdAt": {
+    "$date": "2026-06-14T05:26:26.212Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T05:26:26.212Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a2e531330498b0c4fd16acb"
+  },
+  "name": "Marketing_ali@gmail.com",
+  "permissions": [
+    "manage_clients",
+    "manage_tenders",
+    "track_negotiations",
+    "submit_quotations"
+  ],
+  "createdAt": {
+    "$date": "2026-06-14T07:06:59.520Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-14T07:06:59.520Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a3141182c4171063d5dec94"
+  },
+  "name": "Marketing_z@gmail.com",
+  "permissions": [
+    "manage_leads",
+    "generate_quotations",
+    "submit_tenders",
+    "request_boq"
+  ],
+  "createdAt": {
+    "$date": "2026-06-16T12:27:04.065Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-16T12:27:04.065Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a3141e32c4171063d5dec96"
+  },
+  "name": "Design_w@gmail.com",
+  "permissions": [
+    "upload_drawings",
+    "manage_versions",
+    "upload_boq",
+    "approve_standards"
+  ],
+  "createdAt": {
+    "$date": "2026-06-16T12:30:27.675Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-16T12:30:27.675Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a3142292c4171063d5dec98"
+  },
+  "name": "Accounts_l@gmail.com",
+  "permissions": [
+    "view_invoices",
+    "create_invoice",
+    "process_payments",
+    "view_ledger"
+  ],
+  "createdAt": {
+    "$date": "2026-06-16T12:31:37.535Z"
+  },
+  "updatedAt": {
+    "$date": "2026-06-16T12:31:37.535Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a5088bfd7991ee433e701c7"
+  },
+  "name": "HR_abu@gmail.com",
+  "permissions": [
+    "view_employees",
+    "add_employee",
+    "edit_payroll",
+    "manage_documents"
+  ],
+  "createdAt": {
+    "$date": "2026-07-10T05:53:03.769Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-10T05:53:03.769Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a5315b8e21482c8b5e79769"
+  },
+  "name": "Project_yaseen@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-12T04:19:04.549Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-12T04:19:04.549Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a5315e6e21482c8b5e7976b"
+  },
+  "name": "Design_arbaz@mrgrp.in",
+  "permissions": [
+    "upload_drawings",
+    "manage_versions",
+    "upload_boq",
+    "approve_standards"
+  ],
+  "createdAt": {
+    "$date": "2026-07-12T04:19:50.551Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-12T04:19:50.551Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a532232c96b30d4364d6fbe"
+  },
+  "name": "Project_hasnath@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-12T05:12:18.090Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-12T05:12:18.090Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a532318c96b30d4364d6fc0"
+  },
+  "name": "Marketing_kaif@mrgrp.in",
+  "permissions": [
+    "manage_leads",
+    "generate_quotations",
+    "submit_tenders"
+  ],
+  "createdAt": {
+    "$date": "2026-07-12T05:16:08.418Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-12T08:34:28.721Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "6a5323abc96b30d4364d6fc2"
+  },
+  "name": "HR_misbah@mrgrp.in",
+  "permissions": [
+    "view_employees",
+    "add_employee",
+    "edit_payroll",
+    "manage_documents"
+  ],
+  "createdAt": {
+    "$date": "2026-07-12T05:18:35.516Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-12T05:18:35.516Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54a89c9b11e0d2bbf608d6"
+  },
+  "name": "Marketing_yaseen@mrgrp.in",
+  "permissions": [
+    "manage_leads",
+    "generate_quotations",
+    "submit_tenders",
+    "request_boq"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T08:58:04.518Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T08:58:04.518Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54a8ef9b11e0d2bbf608d8"
+  },
+  "name": "Project_kaif@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T08:59:27.256Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T08:59:27.256Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54a9269b11e0d2bbf608da"
+  },
+  "name": "Project_usama@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:00:22.606Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:00:22.606Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54aed3362aca15380079ca"
+  },
+  "name": "Project_salim.whitestone@gmail.com",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:24:35.230Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:24:35.230Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54af9b362aca15380079cd"
+  },
+  "name": "Project_misbah@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:27:55.429Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:27:55.429Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54afaf362aca15380079cf"
+  },
+  "name": "HR_salim@gmail.com",
+  "permissions": [
+    "view_employees",
+    "add_employee",
+    "edit_payroll",
+    "manage_documents"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:28:15.956Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:28:15.956Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b05e998e0b1faff081d0"
+  },
+  "name": "HR_misbahh@mrgrp.in",
+  "permissions": [
+    "view_employees",
+    "add_employee",
+    "edit_payroll",
+    "manage_documents"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:31:10.813Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:31:10.813Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b3e174c2d1b5c2e5cdec"
+  },
+  "name": "Design_arbaaz@mrgrp.in",
+  "permissions": [
+    "upload_drawings",
+    "manage_versions",
+    "upload_boq",
+    "approve_standards"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:46:09.009Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:46:09.009Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b42d74c2d1b5c2e5cdef"
+  },
+  "name": "Project_hasnath1@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:47:25.580Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:47:25.580Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b45b74c2d1b5c2e5cdf1"
+  },
+  "name": "Project_abdullah@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:48:11.767Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:48:11.767Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b47474c2d1b5c2e5cdf3"
+  },
+  "name": "Project_abhishek@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:48:36.336Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:48:36.336Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b48a74c2d1b5c2e5cdf5"
+  },
+  "name": "Project_alam@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:48:58.043Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:48:58.043Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b49e74c2d1b5c2e5cdf7"
+  },
+  "name": "Project_ejaz@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:49:18.798Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:49:18.798Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b4b474c2d1b5c2e5cdf9"
+  },
+  "name": "Project_afzal@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:49:40.969Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:49:40.969Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a54b4cf74c2d1b5c2e5cdfb"
+  },
+  "name": "Project_amik@mrgrp.in",
+  "permissions": [
+    "view_site_progress",
+    "add_daily_report",
+    "request_material",
+    "upload_completion_cert"
+  ],
+  "createdAt": {
+    "$date": "2026-07-13T09:50:07.092Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-13T09:50:07.092Z"
+  },
+  "__v": 0
+}]
