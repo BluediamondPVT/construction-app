@@ -1,0 +1,1577 @@
+[{
+  "_id": {
+    "$oid": "6a4f735b465102ad8824aade"
+  },
+  "userId": {
+    "$oid": "6a2aac8f560ac7ec1b55432c"
+  },
+  "date": "2026-07-08",
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-08T04:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-08T13:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "isEditedByHR": true,
+  "hrNotes": "dfgfdhf",
+  "createdAt": {
+    "$date": "2026-07-09T10:09:31.779Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-09T13:14:28.731Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a4f93ff94f50878a5e36d69"
+  },
+  "date": "2026-07-09",
+  "userId": {
+    "$oid": "6a2c094a32b14efcd314ab00"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-09T12:28:46.923Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-09T04:30:00.000Z"
+    },
+    "location": {
+      "latitude": 19.1485,
+      "longitude": 72.9952,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": "Manually adjusted by HR",
+      "latitude": null,
+      "longitude": null
+    },
+    "time": {
+      "$date": "2026-07-09T13:30:00.000Z"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-09T12:29:26.067Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a4f9ff01f791be60f962a3e"
+  },
+  "userId": {
+    "$oid": "6a2aadf8560ac7ec1b55432e"
+  },
+  "date": "2026-07-17",
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-17T04:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-17T13:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "isEditedByHR": true,
+  "hrNotes": "",
+  "createdAt": {
+    "$date": "2026-07-09T13:19:44.002Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-09T13:20:41.374Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a4fa0f41f791be60f962aa6"
+  },
+  "userId": {
+    "$oid": "6a3142292c4171063d5dec99"
+  },
+  "date": "2026-07-25",
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-25T04:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-25T13:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "isEditedByHR": true,
+  "hrNotes": "",
+  "createdAt": {
+    "$date": "2026-07-09T13:24:04.213Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-09T13:24:04.213Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a50875faf39556281735936"
+  },
+  "date": "2026-07-10",
+  "userId": {
+    "$oid": "6a2aadf8560ac7ec1b55432e"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-10T05:47:11.870Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-10T05:47:11.869Z"
+    },
+    "location": {
+      "latitude": 19.1485,
+      "longitude": 72.9952,
+      "address": "Acharya Vinobha Bhave Road, Navi Mumbai"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-10T06:30:57.516Z"
+    },
+    "location": {
+      "latitude": 19.1485,
+      "longitude": 72.9952,
+      "address": "Acharya Vinobha Bhave Road, Navi Mumbai"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-10T06:30:57.517Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5088cfaf395562817359d5"
+  },
+  "userId": {
+    "$oid": "6a5088bfd7991ee433e701c8"
+  },
+  "date": "2026-07-10",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-10T05:53:19.718Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-10T04:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-10T13:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-10T05:53:40.736Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a50899dd7991ee433e70242"
+  },
+  "userId": {
+    "$oid": "6a5088bfd7991ee433e701c8"
+  },
+  "date": "2026-07-17",
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-17T04:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-17T13:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "isEditedByHR": true,
+  "hrNotes": "",
+  "createdAt": {
+    "$date": "2026-07-10T05:56:45.238Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-10T05:56:45.238Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a509101d7991ee433e702d9"
+  },
+  "userId": {
+    "$oid": "6a3141182c4171063d5dec95"
+  },
+  "date": "2026-07-10",
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-10T04:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-10T13:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "isEditedByHR": true,
+  "hrNotes": "",
+  "createdAt": {
+    "$date": "2026-07-10T06:28:17.662Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-10T06:28:17.662Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a50913baf3955628173a873"
+  },
+  "date": "2026-07-10",
+  "userId": {
+    "$oid": "6a3141e32c4171063d5dec97"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-10T06:29:14.890Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-10T04:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-10T13:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-10T06:31:21.864Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a50cf23af3955628183b15d"
+  },
+  "userId": {
+    "$oid": "6a3142292c4171063d5dec99"
+  },
+  "date": "2026-07-10",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-10T10:53:21.813Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-10T16:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-10T01:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-10T12:50:26.079Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a510a17af3955628190f20e"
+  },
+  "userId": {
+    "$oid": "6a2aac8f560ac7ec1b55432c"
+  },
+  "date": "2026-07-10",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-10T15:04:55.908Z"
+  },
+  "hrNotes": "Miss punch in confirm by site",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-10T10:30:00.000Z"
+    },
+    "location": {
+      "latitude": 19.331354,
+      "longitude": 73.0993603,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-10T18:35:00.000Z"
+    },
+    "location": {
+      "latitude": 19.3313488,
+      "longitude": 73.0994184,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-10T15:10:23.705Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a51d0deaf395562819e566c"
+  },
+  "date": "2026-07-11",
+  "userId": {
+    "$oid": "6a2aadf8560ac7ec1b55432e"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-11T05:12:58.893Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-11T05:12:58.893Z"
+    },
+    "location": {
+      "latitude": 19.1485,
+      "longitude": 72.9952,
+      "address": "Acharya Vinobha Bhave Road, Navi Mumbai"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-11T05:13:00.595Z"
+    },
+    "location": {
+      "latitude": 19.1485,
+      "longitude": 72.9952,
+      "address": "Acharya Vinobha Bhave Road, Navi Mumbai"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-11T05:13:00.595Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a51d135af395562819e5690"
+  },
+  "userId": {
+    "$oid": "6a5088bfd7991ee433e701c8"
+  },
+  "date": "2026-07-11",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-11T05:14:29.726Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-11T05:14:00.000Z"
+    },
+    "location": {
+      "latitude": 19.1657702,
+      "longitude": 73.0274446,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-10T20:18:00.000Z"
+    },
+    "location": {
+      "latitude": 19.1657727,
+      "longitude": 73.0274395,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-11T12:32:53.487Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a523d98af395562819eb17a"
+  },
+  "date": "2026-07-11",
+  "userId": {
+    "$oid": "6a2a9e9114cd12cf248211f9"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-11T12:56:55.763Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-11T18:26:00.000Z"
+    },
+    "location": {
+      "latitude": 19.1485,
+      "longitude": 72.9952,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-11T00:59:00.000Z"
+    },
+    "location": {
+      "latitude": 19.1485,
+      "longitude": 72.9952,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-11T17:43:22.147Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a52402694ee766e54f5c55a"
+  },
+  "userId": {
+    "$oid": "6a2c094a32b14efcd314ab00"
+  },
+  "date": "2026-07-18",
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-18T04:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-18T16:30:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "isEditedByHR": true,
+  "hrNotes": "Hello I am Super Admin",
+  "createdAt": {
+    "$date": "2026-07-11T13:07:51.129Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-11T13:07:51.129Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6a531223af39556281a7f7ea"
+  },
+  "userId": {
+    "$oid": "6a2c094a32b14efcd314ab00"
+  },
+  "date": "2026-07-12",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-12T04:03:47.233Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-12T04:03:47.232Z"
+    },
+    "location": {
+      "latitude": 19.3139474,
+      "longitude": 73.065865,
+      "address": "Bhiwandi - Nizampur,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-12T04:03:47.233Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a532450af39556281a7fe69"
+  },
+  "userId": {
+    "$oid": "6a532232c96b30d4364d6fbf"
+  },
+  "date": "2026-07-12",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-12T05:21:20.732Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-12T10:00:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-12T22:00:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-12T08:06:06.137Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5347aeaf39556281a80bae"
+  },
+  "date": "2026-07-12",
+  "userId": {
+    "$oid": "6a5323abc96b30d4364d6fc3"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-12T07:52:14.288Z"
+  },
+  "hrNotes": "missing confirm by hasnath",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-12T07:00:00.000Z"
+    },
+    "location": {
+      "latitude": 19.331193418392463,
+      "longitude": 73.09952393395979,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": "Manually adjusted by HR",
+      "latitude": null,
+      "longitude": null
+    },
+    "time": {
+      "$date": "2026-07-12T11:00:00.000Z"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-12T08:00:15.233Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a535823af39556281a811cb"
+  },
+  "date": "2026-07-12",
+  "userId": {
+    "$oid": "6a5315e6e21482c8b5e7976c"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-12T09:02:27.875Z"
+  },
+  "hrNotes": "nvvbnb",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-12T14:32:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-12T20:00:00.000Z"
+    },
+    "location": {
+      "latitude": null,
+      "longitude": null,
+      "address": "Manual HR Entry"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-12T09:04:17.431Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a535eedaf39556281a8144b"
+  },
+  "userId": {
+    "$oid": "6a532318c96b30d4364d6fc1"
+  },
+  "date": "2026-07-12",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-12T09:31:25.348Z"
+  },
+  "hrNotes": "hello check ",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-12T10:00:00.000Z"
+    },
+    "location": {
+      "latitude": 19.3310435,
+      "longitude": 73.0993417,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": "Manually adjusted by HR",
+      "latitude": null,
+      "longitude": null
+    },
+    "time": {
+      "$date": "2026-07-11T22:00:00.000Z"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-12T17:25:32.870Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a53ca2daf39556281c037b1"
+  },
+  "date": "2026-07-12",
+  "userId": {
+    "$oid": "6a5315b8e21482c8b5e7976a"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-12T17:09:01.420Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-12T17:09:00.000Z"
+    },
+    "location": {
+      "latitude": 19.3139472,
+      "longitude": 73.0658646,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": "Manually adjusted by HR",
+      "latitude": null,
+      "longitude": null
+    },
+    "time": {
+      "$date": "2026-07-12T11:30:00.000Z"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-12T21:01:41.132Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a54002faf39556281cdfa90"
+  },
+  "userId": {
+    "$oid": "6a5323abc96b30d4364d6fc3"
+  },
+  "date": "2026-07-13",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-12T20:59:27.666Z"
+  },
+  "hrNotes": "Jdhdh",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-12T19:48:00.000Z"
+    },
+    "location": {
+      "latitude": 19.314192640805356,
+      "longitude": 73.06496222895558,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-13T00:59:00.000Z"
+    },
+    "location": {
+      "latitude": 19.31418991837095,
+      "longitude": 73.06497189029324,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-13T04:23:27.375Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a547258af39556281ce2558"
+  },
+  "date": "2026-07-13",
+  "userId": {
+    "$oid": "6a532318c96b30d4364d6fc1"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T05:06:32.340Z"
+  },
+  "hrNotes": "ghvjhfhf",
+  "isEditedByHR": true,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T07:06:00.000Z"
+    },
+    "location": {
+      "latitude": 19.1657893,
+      "longitude": 73.0274427,
+      "address": "Manually adjusted by HR"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": "Manually adjusted by HR",
+      "latitude": null,
+      "longitude": null
+    },
+    "time": {
+      "$date": "2026-07-13T10:09:00.000Z"
+    }
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-13T10:25:53.814Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a54bb2eaf39556281de57cd"
+  },
+  "userId": {
+    "$oid": "6a54b42d74c2d1b5c2e5cdf0"
+  },
+  "date": "2026-07-13",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T10:17:18.518Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T10:17:18.517Z"
+    },
+    "location": {
+      "latitude": 19.3310843,
+      "longitude": 73.099414,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-13T14:42:10.549Z"
+    },
+    "location": {
+      "latitude": 19.3314688,
+      "longitude": 73.0992838,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-13T14:42:10.549Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a54bcdeaf39556281de688e"
+  },
+  "userId": {
+    "$oid": "6a54b05e998e0b1faff081d1"
+  },
+  "date": "2026-07-13",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T10:24:30.532Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T10:24:30.531Z"
+    },
+    "location": {
+      "latitude": 19.3314779,
+      "longitude": 73.0992554,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-13T10:24:30.532Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a54d472af39556281e668ae"
+  },
+  "date": "2026-07-13",
+  "userId": {
+    "$oid": "6a54b48a74c2d1b5c2e5cdf6"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T12:05:06.990Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T12:05:06.990Z"
+    },
+    "location": {
+      "latitude": 19.3312081,
+      "longitude": 73.0993789,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-13T14:44:21.843Z"
+    },
+    "location": {
+      "latitude": 19.3310285,
+      "longitude": 73.0993928,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-13T14:44:21.843Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a54d524af39556281e6b5a1"
+  },
+  "userId": {
+    "$oid": "6a54b3e174c2d1b5c2e5cded"
+  },
+  "date": "2026-07-13",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T12:08:04.194Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T12:08:04.193Z"
+    },
+    "location": {
+      "latitude": 19.331438017563098,
+      "longitude": 73.09938311689675,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-13T12:37:46.892Z"
+    },
+    "location": {
+      "latitude": 19.331438017563098,
+      "longitude": 73.09938311689675,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-13T12:37:46.893Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a54d5d5af39556281e6bd14"
+  },
+  "date": "2026-07-13",
+  "userId": {
+    "$oid": "6a54a8ef9b11e0d2bbf608d9"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T12:11:01.816Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T12:11:01.815Z"
+    },
+    "location": {
+      "latitude": 19.31083550753428,
+      "longitude": 73.0908448442943,
+      "address": "Bhiwandi - Nizampur,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-13T12:11:01.816Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a54d737af39556281e6cc2a"
+  },
+  "userId": {
+    "$oid": "6a54b4cf74c2d1b5c2e5cdfc"
+  },
+  "date": "2026-07-13",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T12:16:55.341Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T12:16:55.341Z"
+    },
+    "location": {
+      "latitude": 19.3314653,
+      "longitude": 73.0992665,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-13T13:41:47.798Z"
+    },
+    "location": {
+      "latitude": 19.3044236,
+      "longitude": 73.0666279,
+      "address": "Kaneri, Bhiwandi - Nizampur"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-13T13:41:47.799Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a54e87aaf39556281e8bdc2"
+  },
+  "date": "2026-07-13",
+  "userId": {
+    "$oid": "6a54a9269b11e0d2bbf608db"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T13:30:34.094Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T13:30:34.094Z"
+    },
+    "location": {
+      "latitude": 19.3314602,
+      "longitude": 73.0992736,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-13T13:32:03.973Z"
+    },
+    "location": {
+      "latitude": 19.3314801,
+      "longitude": 73.0992832,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-13T13:32:03.973Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a54eadbaf39556281e8bec1"
+  },
+  "date": "2026-07-13",
+  "userId": {
+    "$oid": "6a54b4b574c2d1b5c2e5cdfa"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T13:40:43.335Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T13:40:43.334Z"
+    },
+    "location": {
+      "latitude": 19.3314618,
+      "longitude": 73.0992861,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-13T13:40:55.083Z"
+    },
+    "location": {
+      "latitude": 19.3311303,
+      "longitude": 73.0993387,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-13T13:40:55.083Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a54f907af39556281e8d8ad"
+  },
+  "date": "2026-07-13",
+  "userId": {
+    "$oid": "6a54a89c9b11e0d2bbf608d7"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T14:41:11.593Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T14:41:11.593Z"
+    },
+    "location": {
+      "latitude": 19.3314172,
+      "longitude": 73.0992952,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-13T14:41:17.932Z"
+    },
+    "location": {
+      "latitude": 19.3314034,
+      "longitude": 73.0993463,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-13T14:41:17.933Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a550e0aaf39556281ed6808"
+  },
+  "userId": {
+    "$oid": "6a54b49e74c2d1b5c2e5cdf8"
+  },
+  "date": "2026-07-13",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-13T16:10:50.904Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-13T16:10:50.903Z"
+    },
+    "location": {
+      "latitude": 19.3039256,
+      "longitude": 73.067353,
+      "address": "Kaneri, Bhiwandi - Nizampur"
+    }
+  },
+  "punchOut": {
+    "time": {
+      "$date": "2026-07-13T16:12:12.164Z"
+    },
+    "location": {
+      "latitude": 19.3039309,
+      "longitude": 73.0673563,
+      "address": "Kaneri, Bhiwandi - Nizampur"
+    }
+  },
+  "status": "Present",
+  "updatedAt": {
+    "$date": "2026-07-13T16:12:12.164Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a55a576af39556281f2749c"
+  },
+  "date": "2026-07-14",
+  "userId": {
+    "$oid": "6a54b48a74c2d1b5c2e5cdf6"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-14T02:56:54.652Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-14T02:56:54.644Z"
+    },
+    "location": {
+      "latitude": 19.3314603,
+      "longitude": 73.0992648,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-14T02:56:54.652Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a55a7c4af39556281f2757f"
+  },
+  "date": "2026-07-14",
+  "userId": {
+    "$oid": "6a54b4b574c2d1b5c2e5cdfa"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-14T03:06:44.309Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-14T03:06:44.308Z"
+    },
+    "location": {
+      "latitude": 19.331395,
+      "longitude": 73.09923,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-14T03:06:44.309Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a55ac11af39556281f27725"
+  },
+  "userId": {
+    "$oid": "6a54a9269b11e0d2bbf608db"
+  },
+  "date": "2026-07-14",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-14T03:25:05.761Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-14T03:25:05.760Z"
+    },
+    "location": {
+      "latitude": 19.3311112,
+      "longitude": 73.099676,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-14T03:25:05.761Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a55b731af39556281f27b9e"
+  },
+  "date": "2026-07-14",
+  "userId": {
+    "$oid": "6a54a8ef9b11e0d2bbf608d9"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-14T04:12:33.666Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-14T04:12:33.666Z"
+    },
+    "location": {
+      "latitude": 19.33264631952193,
+      "longitude": 73.10106473892219,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-14T04:12:33.666Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a55bd8faf39556281f27e2d"
+  },
+  "userId": {
+    "$oid": "6a54b05e998e0b1faff081d1"
+  },
+  "date": "2026-07-14",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-14T04:39:43.392Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-14T04:39:43.392Z"
+    },
+    "location": {
+      "latitude": 19.3314636,
+      "longitude": 73.0992724,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-14T04:39:43.392Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a55c1a5af39556281f27fdf"
+  },
+  "userId": {
+    "$oid": "6a54b42d74c2d1b5c2e5cdf0"
+  },
+  "date": "2026-07-14",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-14T04:57:09.563Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-14T04:57:09.562Z"
+    },
+    "location": {
+      "latitude": 19.3313135,
+      "longitude": 73.0993973,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-14T04:57:09.563Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a55c688af39556281f281e1"
+  },
+  "date": "2026-07-14",
+  "userId": {
+    "$oid": "6a54a89c9b11e0d2bbf608d7"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-14T05:18:00.742Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-14T05:18:00.742Z"
+    },
+    "location": {
+      "latitude": 19.3314157,
+      "longitude": 73.0992959,
+      "address": "Agra Road,  Bhiwandi Subdistrict,  Thane"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-14T05:18:00.742Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a55f4f5af39556281f29843"
+  },
+  "date": "2026-07-14",
+  "userId": {
+    "$oid": "6a54b3e174c2d1b5c2e5cded"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-14T08:36:05.283Z"
+  },
+  "hrNotes": "",
+  "isEditedByHR": false,
+  "punchIn": {
+    "time": {
+      "$date": "2026-07-14T08:36:05.283Z"
+    },
+    "location": {
+      "latitude": 19.298511499549992,
+      "longitude": 73.05400928184397,
+      "address": "Kaneri, Bhiwandi - Nizampur"
+    }
+  },
+  "punchOut": {
+    "location": {
+      "address": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "time": null
+  },
+  "status": "In Progress",
+  "updatedAt": {
+    "$date": "2026-07-14T08:36:05.283Z"
+  }
+}]
